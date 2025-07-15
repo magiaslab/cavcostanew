@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../..
 import { Badge } from '../../components/ui/Badge'
 import { apartments, getApartmentBySlug } from '../../data/apartments'
 import { getTestimonialsByApartment } from '../../data/testimonials'
+import { Icon, getAmenityIcon } from '../../components/ui/Icon'
 
 // Genera le route statiche per tutti gli appartamenti
 export function getStaticPaths() {
@@ -75,6 +76,7 @@ const seoKeywords = apartment.seoKeywords.join(', ')
       }
     }
   </script>
+  
   <!-- Breadcrumb Navigation -->
   <nav class="bg-neutral-100 py-4">
     <div class="container-custom">
@@ -100,49 +102,47 @@ const seoKeywords = apartment.seoKeywords.join(', ')
               alt={apartment.name}
               class="w-full h-full object-cover"
             />
-            <div class="absolute top-4 left-4">
-              <Badge variant="accent" className="text-sm">
-                {apartment.type}
-              </Badge>
-            </div>
           </div>
           
-          <!-- Galleria Thumbnails -->
-          <div class="grid grid-cols-4 gap-2">
+          <!-- Galleria Secondaria -->
+          <div class="grid grid-cols-3 gap-4">
             {apartment.images.gallery.map((image, index) => (
-              <div class="relative h-20 overflow-hidden rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+              <div class="relative h-24 overflow-hidden rounded-lg">
                 <img 
                   src={image} 
-                  alt={`${apartment.name} - Immagine ${index + 1}`}
-                  class="w-full h-full object-cover"
+                  alt={`${apartment.name} - Immagine ${index + 2}`}
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
             ))}
           </div>
         </div>
-        
+
         <!-- Informazioni Principali -->
         <div class="space-y-6">
           <div>
-            <h1 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-2">
+            <Badge variant="accent" className="mb-3">
+              {apartment.type}
+            </Badge>
+            <h1 class="text-3xl font-heading font-bold text-neutral-900 mb-4">
               {apartment.name}
             </h1>
-            <p class="text-lg text-neutral-600 mb-4">
+            <p class="text-lg text-neutral-600 mb-6">
               {apartment.shortDescription}
             </p>
             
             <!-- Dettagli Capacità -->
-            <div class="grid grid-cols-3 gap-4 p-4 bg-neutral-50 rounded-xl">
-              <div class="text-center">
-                <div class="text-2xl font-bold text-primary-600">{apartment.capacity.guests}</div>
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              <div class="text-center p-4 bg-neutral-50 rounded-lg">
+                <div class="text-2xl font-bold text-primary-600 mb-1">{apartment.capacity.guests}</div>
                 <div class="text-sm text-neutral-600">Ospiti</div>
               </div>
-              <div class="text-center">
-                <div class="text-2xl font-bold text-primary-600">{apartment.capacity.bedrooms}</div>
+              <div class="text-center p-4 bg-neutral-50 rounded-lg">
+                <div class="text-2xl font-bold text-primary-600 mb-1">{apartment.capacity.bedrooms}</div>
                 <div class="text-sm text-neutral-600">Camere</div>
               </div>
-              <div class="text-center">
-                <div class="text-2xl font-bold text-primary-600">{apartment.size}</div>
+              <div class="text-center p-4 bg-neutral-50 rounded-lg">
+                <div class="text-2xl font-bold text-primary-600 mb-1">{apartment.size}</div>
                 <div class="text-sm text-neutral-600">m²</div>
               </div>
             </div>
@@ -171,22 +171,8 @@ const seoKeywords = apartment.seoKeywords.join(', ')
           <div class="grid grid-cols-2 gap-4">
             {apartment.features.map((feature) => (
               <div class="flex items-center space-x-3 p-3 bg-neutral-50 rounded-lg">
-                <div class="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <!-- Icone dinamiche basate sul tipo -->
-                    {feature.icon === 'eye' && (
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                    )}
-                    {feature.icon === 'car' && (
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z M13 16v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6M8 16V4a1 1 0 011-1h4a1 1 0 011 1v12"/>
-                    )}
-                    {feature.icon === 'wifi' && (
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/>
-                    )}
-                    {feature.icon === 'thermometer' && (
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                    )}
-                  </svg>
+                <div class="w-10 h-10 bg-accent-600 rounded-full flex items-center justify-center">
+                  <Icon name={feature.icon} size={20} color="white" />
                 </div>
                 <div>
                   <div class="font-semibold text-sm text-neutral-900">{feature.title}</div>
@@ -214,16 +200,18 @@ const seoKeywords = apartment.seoKeywords.join(', ')
           </div>
         </div>
         
-        <!-- Servizi e Dotazioni -->
+        <!-- Servizi e Dotazioni - Riorganizzato in due colonne -->
         <div>
           <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-6">
             Servizi e Dotazioni
           </h2>
-          <div class="grid grid-cols-1 gap-3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             {apartment.amenities.map((amenity) => (
               <div class="flex items-center space-x-3 p-3 bg-white rounded-lg border border-neutral-200">
-                <div class="w-2 h-2 bg-success-500 rounded-full"></div>
-                <span class="text-neutral-700">{amenity}</span>
+                <div class="w-8 h-8 bg-accent-100 rounded-full flex items-center justify-center">
+                  <Icon name={getAmenityIcon(amenity)} size={16} color="#FA821F" />
+                </div>
+                <span class="text-neutral-700 text-sm">{amenity}</span>
               </div>
             ))}
           </div>
@@ -260,9 +248,12 @@ const seoKeywords = apartment.seoKeywords.join(', ')
                     </svg>
                   ))}
                 </div>
-                <p class="text-neutral-600 text-sm italic">
+                <p class="text-neutral-600 text-sm italic mb-3">
                   "{testimonial.text}"
                 </p>
+                <div class="text-xs text-neutral-500">
+                  {testimonial.date}
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -271,67 +262,81 @@ const seoKeywords = apartment.seoKeywords.join(', ')
     </section>
   )}
 
-  <!-- CTA Prenotazione -->
-  <section class="py-12 bg-primary-600 text-white">
+  <!-- Appartamenti Correlati -->
+  <section class="py-12 bg-neutral-50">
     <div class="container-custom">
-      <div class="text-center max-w-2xl mx-auto">
-        <h2 class="text-2xl font-heading font-bold mb-4">
-          Prenota {apartment.name}
+      <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-8 text-center">
+        Altri Appartamenti che Potrebbero Interessarti
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {apartments.filter(apt => apt.slug !== apartment.slug).slice(0, 3).map((relatedApartment) => (
+          <Card className="card-hover overflow-hidden">
+            <div class="relative h-48 overflow-hidden">
+              <img 
+                src={relatedApartment.images.main} 
+                alt={relatedApartment.name}
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div class="absolute top-4 left-4">
+                <Badge variant="accent" className="text-xs">
+                  {relatedApartment.type}
+                </Badge>
+              </div>
+            </div>
+            <CardHeader>
+              <CardTitle className="text-xl">
+                {relatedApartment.name}
+              </CardTitle>
+              <CardDescription>
+                {relatedApartment.shortDescription}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div class="flex items-center justify-between">
+                <div class="text-xl font-bold text-primary-600">
+                  €{relatedApartment.price.low} - €{relatedApartment.price.high}
+                  <span class="text-sm font-normal text-neutral-500">/notte</span>
+                </div>
+                <a 
+                  href={`/appartamenti/${relatedApartment.slug}`}
+                  class="btn-primary btn-sm"
+                >
+                  Scopri
+                </a>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Finale -->
+  <section class="py-12 bg-gradient-to-br from-primary-600 to-primary-800">
+    <div class="container-custom">
+      <div class="text-center text-white">
+        <h2 class="text-3xl font-heading font-bold mb-4">
+          Prenota Ora {apartment.name}
         </h2>
-        <p class="text-lg mb-6 text-primary-100">
-          Contattaci per verificare la disponibilità e prenotare il tuo soggiorno
+        <p class="text-lg mb-8 max-w-2xl mx-auto opacity-90">
+          Non aspettare, le date migliori vanno a ruba! Prenota subito il tuo {apartment.type.toLowerCase()} per le vacanze dei tuoi sogni.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contatti#prenotazione" class="btn-accent btn-lg">
-            Verifica Disponibilità
+          <a 
+            href="/contatti#prenotazione"
+            class="btn-accent btn-lg font-semibold"
+          >
+            Prenota Ora
           </a>
-          <a href="/contatti" class="btn-outline btn-lg border-white text-white hover:bg-white hover:text-primary-600">
-            Contattaci
+          <a 
+            href="/contatti"
+            class="btn-outline-white btn-lg"
+          >
+            Chiedi Informazioni
           </a>
         </div>
       </div>
     </div>
   </section>
-</Layout>
-
-<!-- TODO: Implementare galleria immagini interattiva -->
-<!-- TODO: Aggiungere calendario disponibilità -->
-<!-- TODO: Implementare sistema di prenotazione diretta -->
-<!-- TODO: Aggiungere JSON-LD per singolo appartamento -->
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Apartment",
-  "name": "{apartment.name}",
-  "description": "{apartment.description}",
-  "floorSize": {
-    "@type": "QuantitativeValue",
-    "value": {apartment.size},
-    "unitText": "m²"
-  },
-  "numberOfRooms": {apartment.capacity.bedrooms},
-  "occupancy": {
-    "@type": "QuantitativeValue",
-    "maxValue": {apartment.capacity.guests}
-  },
-  "amenityFeature": [
-    {apartment.amenities.map(amenity => `"${amenity}"`).join(', ')}
-  ],
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "San Vincenzo",
-    "addressRegion": "Toscana",
-    "addressCountry": "IT"
-  },
-  "offers": {
-    "@type": "Offer",
-    "priceRange": "€{apartment.price.low}-€{apartment.price.high}",
-    "priceCurrency": "EUR"
-  },
-  "image": [
-    "{apartment.images.main}",
-    {apartment.images.gallery.map(img => `"${img}"`).join(', ')}
-  ]
-}
-</script> 
+</Layout> 

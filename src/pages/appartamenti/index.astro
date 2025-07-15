@@ -47,8 +47,9 @@ import { formatPrice } from '../../lib/utils'
       ]
     }
   </script>
-  <!-- Hero Section -->
-  <section class="relative h-80 flex items-center justify-center overflow-hidden">
+  
+  <!-- Hero Section - Ridotta -->
+  <section class="relative h-64 flex items-center justify-center overflow-hidden">
     <!-- Overlay per migliorare la leggibilità -->
     <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
     
@@ -66,19 +67,19 @@ import { formatPrice } from '../../lib/utils'
     <!-- Contenuto Hero -->
     <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
       <!-- Titolo con sfondo semi-trasparente per migliorare la leggibilità -->
-      <div class="bg-black/60 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-        <h1 class="text-4xl md:text-5xl font-heading font-black mb-4 text-white leading-tight">
-          I Nostri <span class="text-accent-400">Appartamenti</span>
+      <div class="bg-black/60 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+        <h1 class="text-3xl md:text-4xl font-heading font-black mb-3 text-white leading-tight">
+          Appartamenti per Ogni Esigenza
         </h1>
-        <p class="text-xl md:text-2xl font-medium text-white/90">
-          Scegli la soluzione perfetta per le tue vacanze
+        <p class="text-lg md:text-xl font-medium text-white/90">
+          Dai monolocali romantici ai trilocali spaziosi per famiglie, tutti i nostri appartamenti sono arredati con gusto e dotati di ogni comfort per rendere la tua vacanza indimenticabile.
         </p>
       </div>
     </div>
   </section>
 
   <!-- Breadcrumb -->
-  <nav class="bg-neutral-100 py-4">
+  <nav class="bg-neutral-100 py-3">
     <div class="container-custom">
       <div class="flex items-center space-x-2 text-sm text-neutral-600">
         <a href="/" class="hover:text-primary-600">Home</a>
@@ -88,40 +89,30 @@ import { formatPrice } from '../../lib/utils'
     </div>
   </nav>
 
-  <!-- Introduzione -->
-  <section class="section-padding bg-white">
+  <!-- Statistiche - Sezione compatta -->
+  <section class="py-8 bg-white">
     <div class="container-custom">
-      <div class="max-w-4xl mx-auto text-center mb-16">
-        <h2 class="text-3xl font-heading font-bold mb-6 text-neutral-900">
-          Appartamenti per Ogni Esigenza
-        </h2>
-        <p class="text-lg text-neutral-600 mb-8">
-          Dai monolocali romantici ai trilocali spaziosi per famiglie, tutti i nostri appartamenti sono arredati con gusto e dotati di ogni comfort per rendere la tua vacanza indimenticabile.
-        </p>
-        
-        <!-- Statistiche -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary-600 mb-2">{apartments.length}</div>
-            <div class="text-sm text-neutral-600">Appartamenti Disponibili</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-accent-600 mb-2">100%</div>
-            <div class="text-sm text-neutral-600">Soddisfazione Clienti</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-success-600 mb-2">24/7</div>
-            <div class="text-sm text-neutral-600">Assistenza Disponibile</div>
-          </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+        <div class="text-center">
+          <div class="text-4xl font-bold text-primary-600 mb-2">{apartments.length}</div>
+          <div class="text-sm text-neutral-600">Appartamenti Disponibili</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-accent-600 mb-2">100%</div>
+          <div class="text-sm text-neutral-600">Soddisfazione Clienti</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-success-600 mb-2">24/7</div>
+          <div class="text-sm text-neutral-600">Assistenza Disponibile</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Filtri e Ordinamento -->
-  <section class="py-8 bg-neutral-50">
+  <section class="py-6 bg-neutral-50">
     <div class="container-custom">
-      <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+      <div class="flex flex-col md:flex-row justify-between items-center mb-6">
         <div class="flex items-center space-x-4 mb-4 md:mb-0">
           <h3 class="text-lg font-semibold text-neutral-900">Filtri:</h3>
           <div class="flex space-x-2">
@@ -153,13 +144,13 @@ import { formatPrice } from '../../lib/utils'
     </div>
   </section>
 
-  <!-- Griglia Appartamenti -->
-  <section class="section-padding bg-gradient-to-br from-neutral-50 to-neutral-100">
+  <!-- Griglia Appartamenti - Spaziatura ridotta -->
+  <section class="py-8 bg-gradient-to-br from-neutral-50 to-neutral-100">
     <div class="container-custom">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
         {apartments.map((apartment) => (
           <Card className="card-hover overflow-hidden shadow-medium border-2 border-white/50">
-            <div class="relative h-64 overflow-hidden">
+            <div class="relative h-56 overflow-hidden">
               <img 
                 src={apartment.images.main} 
                 alt={apartment.name}
@@ -177,7 +168,7 @@ import { formatPrice } from '../../lib/utils'
               </div>
             </div>
             
-            <CardHeader>
+            <CardHeader className="pb-3">
               <div class="flex justify-between items-start">
                 <div>
                   <CardTitle className="text-xl mb-2">
@@ -190,7 +181,7 @@ import { formatPrice } from '../../lib/utils'
               </div>
             </CardHeader>
             
-            <CardContent>
+            <CardContent className="pt-0">
               <!-- Caratteristiche Principali -->
               <div class="grid grid-cols-3 gap-4 mb-4 p-3 bg-neutral-50 rounded-lg">
                 <div class="text-center">
@@ -251,10 +242,10 @@ import { formatPrice } from '../../lib/utils'
     </div>
   </section>
 
-  <!-- Vantaggi -->
-  <section class="section-padding bg-neutral-50">
+  <!-- Vantaggi - Spaziatura ridotta -->
+  <section class="py-12 bg-neutral-50">
     <div class="container-custom">
-      <div class="text-center mb-16">
+      <div class="text-center mb-12">
         <h2 class="text-3xl font-heading font-bold mb-4 text-neutral-900">
           Perché Scegliere i Nostri Appartamenti
         </h2>
@@ -298,32 +289,32 @@ import { formatPrice } from '../../lib/utils'
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-2 text-neutral-900">Posizione Strategica</h3>
+          <h3 class="text-xl font-semibold mb-2 text-neutral-900">Posizione Ideale</h3>
           <p class="text-neutral-600 text-sm">
-            Tutti i nostri appartamenti sono vicini al mare e ai servizi principali
+            Tutti i nostri appartamenti si trovano in posizioni strategiche vicino al mare
           </p>
         </div>
 
-        <!-- Assistenza -->
+        <!-- Supporto -->
         <div class="text-center">
-          <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div class="w-16 h-16 bg-warning-600 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 110 19.5 9.75 9.75 0 010-19.5zm0 0V5.25m0 13.5v3m0-16.5h3m-13.5 0h3m11.25 11.25h3m-16.5 0h3"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-2 text-neutral-900">Assistenza 24/7</h3>
+          <h3 class="text-xl font-semibold mb-2 text-neutral-900">Supporto 24/7</h3>
           <p class="text-neutral-600 text-sm">
-            Il nostro team è sempre disponibile per qualsiasi necessità
+            Il nostro staff è sempre disponibile per qualsiasi necessità
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="section-padding bg-white">
+  <!-- Domande Frequenti - Spaziatura ridotta -->
+  <section class="py-12 bg-white">
     <div class="container-custom">
-      <div class="text-center mb-16">
+      <div class="text-center mb-12">
         <h2 class="text-3xl font-heading font-bold mb-4 text-neutral-900">
           Domande Frequenti
         </h2>
@@ -332,69 +323,73 @@ import { formatPrice } from '../../lib/utils'
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">È incluso il parcheggio?</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p class="text-neutral-600">
-              Sì, tutti i nostri appartamenti includono un posto auto privato gratuito.
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- FAQ 1 -->
+          <div class="bg-neutral-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold mb-3 text-neutral-900">
+              Qual è l'orario di check-in e check-out?
+            </h3>
+            <p class="text-neutral-600 text-sm">
+              Il check-in è dalle 15:00 alle 20:00, il check-out entro le 10:00. Orari flessibili su richiesta.
             </p>
-          </CardContent>
-        </Card>
+          </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">È possibile portare animali domestici?</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p class="text-neutral-600">
-              Gli animali domestici sono benvenuti in alcuni appartamenti. Contattaci per verificare la disponibilità.
+          <!-- FAQ 2 -->
+          <div class="bg-neutral-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold mb-3 text-neutral-900">
+              Gli animali domestici sono ammessi?
+            </h3>
+            <p class="text-neutral-600 text-sm">
+              Sì, gli animali domestici sono benvenuti in alcuni appartamenti. Contattaci per verificare la disponibilità.
             </p>
-          </CardContent>
-        </Card>
+          </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Qual è la politica di cancellazione?</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p class="text-neutral-600">
-              Cancellazione gratuita fino a 7 giorni prima dell'arrivo. Contattaci per maggiori dettagli.
+          <!-- FAQ 3 -->
+          <div class="bg-neutral-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold mb-3 text-neutral-900">
+              È inclusa la pulizia finale?
+            </h3>
+            <p class="text-neutral-600 text-sm">
+              Sì, la pulizia finale è inclusa nel prezzo. Chiediamo solo di lasciare l'appartamento in ordine.
             </p>
-          </CardContent>
-        </Card>
+          </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">È disponibile il Wi-Fi?</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p class="text-neutral-600">
-              Sì, tutti gli appartamenti sono dotati di connessione Wi-Fi gratuita ad alta velocità.
+          <!-- FAQ 4 -->
+          <div class="bg-neutral-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold mb-3 text-neutral-900">
+              Posso cancellare la prenotazione?
+            </h3>
+            <p class="text-neutral-600 text-sm">
+              Sì, puoi cancellare gratuitamente fino a 7 giorni prima dell'arrivo. Condizioni dettagliate nella conferma.
             </p>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section-padding bg-primary-600 text-white">
+  <!-- CTA Finale - Spaziatura ridotta -->
+  <section class="py-12 bg-gradient-to-br from-primary-600 to-primary-800">
     <div class="container-custom">
-      <div class="text-center max-w-3xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
+      <div class="text-center text-white">
+        <h2 class="text-3xl font-heading font-bold mb-4">
           Pronto per la Tua Vacanza?
         </h2>
-        <p class="text-xl mb-8 text-primary-100">
-          Prenota ora il tuo appartamento e scopri la magia della Costa degli Etruschi
+        <p class="text-lg mb-8 max-w-2xl mx-auto opacity-90">
+          Prenota ora il tuo appartamento ideale e inizia a vivere la tua vacanza da sogno sulla Costa degli Etruschi
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contatti#prenotazione" class="btn-accent btn-lg">
+          <a 
+            href="/contatti#prenotazione"
+            class="btn-accent btn-lg font-semibold"
+          >
             Prenota Ora
           </a>
-          <a href="/contatti" class="btn-outline btn-lg border-white text-white hover:bg-white hover:text-primary-600">
+          <a 
+            href="/contatti"
+            class="btn-outline-white btn-lg"
+          >
             Contattaci
           </a>
         </div>
