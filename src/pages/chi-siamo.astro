@@ -1,13 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card'
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card'
 import { Badge } from '../components/ui/Badge'
+import { Icon } from '../components/ui/Icon'
 ---
 
 <Layout 
   title="Chi Siamo"
-  description="Scopri la storia di CAV Costa degli Etruschi, la nostra filosofia dell'ospitalità e i valori che ci guidano nell'offrire vacanze indimenticabili a San Vincenzo."
-  keywords="CAV Costa Etruschi storia, team CAV, ospitalità San Vincenzo, valori aziendali, filosofia turismo"
+  description="Scopri la storia di CAV Costa degli Etruschi: dal 2010 offriamo appartamenti vacanze di qualità a San Vincenzo con passione per l'ospitalità autentica."
+  keywords="CAV Costa degli Etruschi storia, chi siamo appartamenti San Vincenzo, ospitalità Toscana, valori aziendali vacanze"
 >
   <!-- Dati Strutturati Organizzazione -->
   <script type="application/ld+json" slot="head">
@@ -15,116 +16,116 @@ import { Badge } from '../components/ui/Badge'
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "CAV Costa degli Etruschi",
-      "description": "Dal 2010 offriamo appartamenti vacanze a San Vincenzo con passione per l'ospitalità toscana. Scopri la nostra storia e i nostri valori.",
+      "description": "Appartamenti vacanze a San Vincenzo dal 2010. Offriamo ospitalità autentica e appartamenti di qualità sulla Costa degli Etruschi.",
       "url": "https://cavcostadeglietruschi.it/chi-siamo",
-      "logo": "https://cavcostadeglietruschi.it/images/Logo-orizzontale.png",
       "foundingDate": "2010",
-      "foundingLocation": {
-        "@type": "Place",
-        "name": "San Vincenzo, Toscana"
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Via del Mare 123",
+        "addressLocality": "San Vincenzo",
+        "addressRegion": "Toscana",
+        "postalCode": "57027",
+        "addressCountry": "IT"
       },
-      "areaServed": {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-          "@type": "GeoCoordinates",
-          "latitude": 43.0167,
-          "longitude": 10.5333
-        },
-        "geoRadius": "10000"
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+39 0565 701234",
+        "contactType": "customer service",
+        "availableLanguage": "Italian"
       },
-      "knowsAbout": [
-        "Ospitalità toscana",
-        "Turismo Costa degli Etruschi",
-        "Appartamenti vacanze",
-        "San Vincenzo",
-        "Territorio toscano"
-      ],
-      "employee": [
-        {
-          "@type": "Person",
-          "name": "Marco Rossi",
-          "jobTitle": "Fondatore e CEO"
-        },
-        {
-          "@type": "Person", 
-          "name": "Laura Bianchi",
-          "jobTitle": "Responsabile Accoglienza"
-        },
-        {
-          "@type": "Person",
-          "name": "Andrea Verdi",
-          "jobTitle": "Coordinatore Manutenzione"
-        }
+      "sameAs": [
+        "https://www.facebook.com/cavcostadeglietruschi",
+        "https://www.instagram.com/cavcostadeglietruschi"
       ]
     }
   </script>
+  
   <!-- Hero Section -->
   <section class="relative h-96 flex items-center justify-center overflow-hidden">
-    <!-- Overlay per migliorare la leggibilità -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
-    
-    <!-- Background con effetto animato -->
+    <!-- Video Background -->
     <div class="absolute inset-0 w-full h-full">
-      <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-accent-600 via-accent-700 to-accent-800 opacity-90"></div>
-      <div class="absolute inset-0 w-full h-full" style="
-        background: 
-          radial-gradient(circle at 40% 60%, rgba(0, 113, 132, 0.2) 0%, transparent 50%),
-          radial-gradient(circle at 60% 40%, rgba(250, 130, 31, 0.2) 0%, transparent 50%);
-        animation: gradientMove 12s ease-in-out infinite;
-      "></div>
+      <video 
+        class="w-full h-full object-cover" 
+        autoplay 
+        muted 
+        loop 
+        playsinline
+        poster="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+      >
+        <source src="https://player.vimeo.com/external/194837908.sd.mp4?s=c350076905b61409c687728326955ff0c0b49c2d&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
+        <!-- Fallback per browser che non supportano video -->
+        <img 
+          src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+          alt="Chi siamo CAV Costa degli Etruschi"
+          class="w-full h-full object-cover"
+        />
+      </video>
     </div>
-
+    
+    <!-- Overlay per migliorare la leggibilità -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
+    
     <!-- Contenuto Hero -->
     <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-      <!-- Titolo con sfondo semi-trasparente per migliorare la leggibilità -->
       <div class="bg-black/60 backdrop-blur-md rounded-2xl p-8 border border-white/20">
         <h1 class="text-4xl md:text-5xl font-heading font-black mb-4 text-white leading-tight">
-          <span class="text-accent-400">Chi Siamo</span>
+          La Nostra <span class="text-accent-400">Storia</span>
         </h1>
         <p class="text-xl md:text-2xl font-medium text-white/90">
-          La nostra passione per l'ospitalità toscana
+          Passione per l'ospitalità dal 2010
         </p>
       </div>
     </div>
   </section>
 
-  <!-- La Nostra Storia -->
+  <!-- Breadcrumb -->
+  <nav class="bg-neutral-100 py-4">
+    <div class="container-custom">
+      <div class="flex items-center space-x-2 text-sm text-neutral-600">
+        <a href="/" class="hover:text-primary-600">Home</a>
+        <span>›</span>
+        <span class="text-neutral-900">Chi Siamo</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Storia dell'Azienda -->
   <section class="section-padding bg-white">
     <div class="container-custom">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div class="space-y-6">
-          <div>
-            <h2 class="text-3xl font-heading font-bold mb-4 text-neutral-900">
-              La Nostra Storia
-            </h2>
-            <p class="text-lg text-neutral-600 mb-6">
-              Nata dalla passione per l'ospitalità e l'amore per la nostra terra
-            </p>
-          </div>
-
-          <div class="prose prose-lg text-neutral-700 space-y-4">
-            <p>
-              <strong>CAV Costa degli Etruschi</strong> nasce nel 2010 dal sogno di una famiglia toscana di condividere la bellezza della Costa degli Etruschi con visitatori da tutto il mondo. Ciò che è iniziato come un piccolo progetto familiare è cresciuto negli anni diventando un punto di riferimento per l'ospitalità di qualità a San Vincenzo.
-            </p>
-            
-            <p>
-              La nostra storia è fatta di piccoli gesti quotidiani: l'accoglienza calorosa, l'attenzione per i dettagli, la cura per la pulizia e il comfort dei nostri ospiti. Ogni appartamento è stato scelto e arredato con amore, pensando a creare un ambiente che faccia sentire i nostri ospiti come a casa propria.
-            </p>
-            
-            <p>
-              Nel corso degli anni abbiamo ospitato migliaia di famiglie, coppie e viaggiatori, ciascuno con la propria storia e le proprie esigenze. Questa esperienza ci ha insegnato l'importanza di un servizio personalizzato e ci ha permesso di affinare continuamente la nostra offerta.
-            </p>
-          </div>
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 text-neutral-900">
+            La Storia di CAV Costa degli Etruschi
+          </h2>
+          <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+            Un percorso iniziato nel 2010 con la passione per l'ospitalità autentica
+          </p>
         </div>
-
-        <div class="relative">
-          <img 
-            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-            alt="Storia CAV Costa degli Etruschi"
-            class="rounded-2xl shadow-lg"
-          />
-          <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-primary-600 rounded-full flex items-center justify-center">
-            <span class="text-2xl font-bold text-white">2010</span>
+        
+        <div class="prose prose-lg max-w-none">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h3 class="text-2xl font-heading font-bold mb-6 text-neutral-900">
+                Le Nostre Origini
+              </h3>
+              <p class="text-neutral-700 mb-6">
+                CAV Costa degli Etruschi nasce nel 2010 dall'amore per questo territorio straordinario e dal desiderio di condividere la bellezza della Costa degli Etruschi con viaggiatori da tutto il mondo.
+              </p>
+              <p class="text-neutral-700 mb-6">
+                Quello che è iniziato come una piccola attività familiare si è evoluto negli anni, mantenendo sempre al centro i valori dell'ospitalità autentica e della qualità del servizio.
+              </p>
+              <p class="text-neutral-700">
+                Oggi gestiamo una selezione di appartamenti accuratamente scelti e arredati, ognuno dei quali riflette la nostra attenzione per i dettagli e la cura per l'esperienza dei nostri ospiti.
+              </p>
+            </div>
+            
+            <div class="relative">
+              <img 
+                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                alt="Storia CAV Costa degli Etruschi"
+                class="rounded-lg shadow-medium"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -139,117 +140,193 @@ import { Badge } from '../components/ui/Badge'
           I Nostri Valori
         </h2>
         <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
-          Principi che guidano ogni nostra azione e decisione
+          Principi che guidano ogni giorno il nostro lavoro
         </p>
       </div>
-
+      
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Autenticità -->
-        <Card className="card-hover text-center">
-          <CardHeader>
-            <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-              </svg>
-            </div>
-            <CardTitle className="text-xl">Autenticità</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p class="text-neutral-600">
-              Offriamo un'esperienza genuina della Toscana, condividendo la nostra cultura e tradizioni con passione e sincerità.
-            </p>
-          </CardContent>
-        </Card>
-
         <!-- Qualità -->
-        <Card className="card-hover text-center">
-          <CardHeader>
-            <div class="w-16 h-16 bg-accent-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
-            <CardTitle className="text-xl">Qualità</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p class="text-neutral-600">
-              La qualità è il nostro impegno quotidiano, dalla pulizia degli appartamenti alla cura dei dettagli nel servizio.
-            </p>
-          </CardContent>
-        </Card>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="award" size={32} color="white" />
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-neutral-900">Qualità</h3>
+          <p class="text-neutral-600">
+            Selezioniamo solo appartamenti che rispettano i nostri standard elevati di comfort e pulizia
+          </p>
+        </div>
 
-        <!-- Accoglienza -->
-        <Card className="card-hover text-center">
-          <CardHeader>
-            <div class="w-16 h-16 bg-success-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-              </svg>
-            </div>
-            <CardTitle className="text-xl">Accoglienza</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p class="text-neutral-600">
-              Crediamo che ogni ospite sia speciale e merita un'accoglienza calorosa e un'attenzione personalizzata.
-            </p>
-          </CardContent>
-        </Card>
+        <!-- Ospitalità -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-accent-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="heart" size={32} color="white" />
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-neutral-900">Ospitalità</h3>
+          <p class="text-neutral-600">
+            Trattiamo ogni ospite come un amico, offrendo consigli e supporto personalizzato
+          </p>
+        </div>
 
-        <!-- Rispetto -->
-        <Card className="card-hover text-center">
-          <CardHeader>
-            <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
-            <CardTitle className="text-xl">Rispetto</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p class="text-neutral-600">
-              Rispettiamo il territorio, l'ambiente e le tradizioni locali, promuovendo un turismo sostenibile e responsabile.
-            </p>
-          </CardContent>
-        </Card>
+        <!-- Trasparenza -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-success-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="eye" size={32} color="white" />
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-neutral-900">Trasparenza</h3>
+          <p class="text-neutral-600">
+            Prezzi chiari, nessun costo nascosto e comunicazione sempre onesta e diretta
+          </p>
+        </div>
+
+        <!-- Esperienza Locale -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-warning-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="map" size={32} color="white" />
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-neutral-900">Esperienza Locale</h3>
+          <p class="text-neutral-600">
+            Conosciamo ogni angolo del territorio e condividiamo i segreti meglio custoditi
+          </p>
+        </div>
+
+        <!-- Sostenibilità -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-error-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="heart" size={32} color="white" />
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-neutral-900">Sostenibilità</h3>
+          <p class="text-neutral-600">
+            Rispettiamo l'ambiente e promuoviamo un turismo responsabile e consapevole
+          </p>
+        </div>
 
         <!-- Innovazione -->
-        <Card className="card-hover text-center">
-          <CardHeader>
-            <div class="w-16 h-16 bg-accent-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-              </svg>
-            </div>
-            <CardTitle className="text-xl">Innovazione</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p class="text-neutral-600">
-              Ci evolviamo costantemente per migliorare i nostri servizi e offrire sempre nuove esperienze ai nostri ospiti.
-            </p>
-          </CardContent>
-        </Card>
-
-        <!-- Famiglia -->
-        <Card className="card-hover text-center">
-          <CardHeader>
-            <div class="w-16 h-16 bg-success-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-              </svg>
-            </div>
-            <CardTitle className="text-xl">Famiglia</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p class="text-neutral-600">
-              Siamo una famiglia che accoglie altre famiglie, creando legami autentici e duraturi con i nostri ospiti.
-            </p>
-          </CardContent>
-        </Card>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-info-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="zap" size={32} color="white" />
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-neutral-900">Innovazione</h3>
+          <p class="text-neutral-600">
+            Utilizziamo tecnologie moderne per migliorare continuamente l'esperienza dei nostri ospiti
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Il Nostro Team -->
+  <!-- Missione -->
+  <section class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-8 text-neutral-900">
+          La Nostra Missione
+        </h2>
+        <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-2xl p-8 border-2 border-primary-100">
+          <p class="text-xl text-neutral-700 leading-relaxed">
+            "Vogliamo che ogni ospite viva un'esperienza autentica e indimenticabile sulla Costa degli Etruschi, 
+            scoprendo non solo la bellezza del territorio, ma anche il calore dell'ospitalità toscana. 
+            Il nostro obiettivo è creare ricordi che durino una vita."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cosa ci Distingue -->
+  <section class="section-padding bg-neutral-50">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 text-neutral-900">
+          Cosa ci Distingue
+        </h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+          Perché scegliere CAV Costa degli Etruschi per le tue vacanze
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <!-- Selezione Accurata -->
+        <div class="space-y-4">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <Icon name="check" size={24} color="white" />
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-neutral-900">Selezione Accurata</h3>
+              <p class="text-neutral-600">
+                Ogni appartamento è personalmente ispezionato e approvato dal nostro team per garantire standard elevati.
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-accent-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <Icon name="check" size={24} color="white" />
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-neutral-900">Supporto 24/7</h3>
+              <p class="text-neutral-600">
+                Siamo sempre disponibili per qualsiasi esigenza, dal momento della prenotazione al termine del soggiorno.
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-success-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <Icon name="check" size={24} color="white" />
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-neutral-900">Consigli Personalizzati</h3>
+              <p class="text-neutral-600">
+                Offriamo suggerimenti su misura per ristoranti, attività e luoghi da visitare basati sui tuoi interessi.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Esperienza Completa -->
+        <div class="space-y-4">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-warning-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <Icon name="check" size={24} color="white" />
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-neutral-900">Pulizia Impeccabile</h3>
+              <p class="text-neutral-600">
+                Utilizziamo protocolli di pulizia rigorosi per garantire ambienti sempre perfetti per i nostri ospiti.
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-error-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <Icon name="check" size={24} color="white" />
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-neutral-900">Posizione Strategica</h3>
+              <p class="text-neutral-600">
+                Tutti i nostri appartamenti sono situati in posizioni privilegiate, vicini al mare e ai servizi.
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-info-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <Icon name="check" size={24} color="white" />
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-neutral-900">Rapporto Qualità-Prezzo</h3>
+              <p class="text-neutral-600">
+                Offriamo un eccellente rapporto qualità-prezzo, con tariffe competitive per servizi premium.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team (Placeholder) -->
   <section class="section-padding bg-white">
     <div class="container-custom">
       <div class="text-center mb-16">
@@ -257,76 +334,55 @@ import { Badge } from '../components/ui/Badge'
           Il Nostro Team
         </h2>
         <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
-          Le persone che rendono possibile la vostra vacanza perfetta
+          Persone appassionate che rendono possibile la vostra esperienza perfetta
         </p>
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Team Member 1 -->
-        <Card className="card-hover">
-          <div class="relative">
-            <img 
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" 
-              alt="Marco Rossi - Fondatore"
-              class="w-full h-64 object-cover rounded-t-2xl"
-            />
-            <div class="absolute top-4 left-4">
-              <Badge variant="default">Fondatore</Badge>
-            </div>
-          </div>
+        <Card className="card-hover text-center">
           <CardHeader>
+            <div class="w-24 h-24 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Icon name="user-check" size={32} color="white" />
+            </div>
             <CardTitle className="text-xl">Marco Rossi</CardTitle>
-            <CardDescription>Fondatore e Direttore</CardDescription>
+            <p class="text-neutral-600">Fondatore & Direttore</p>
           </CardHeader>
           <CardContent>
-            <p class="text-sm text-neutral-600">
-              Toscano doc, appassionato di turismo e ospitalità. Marco ha fondato CAV con la visione di far conoscere la vera Toscana ai visitatori di tutto il mondo.
+            <p class="text-neutral-600 text-sm">
+              Con oltre 15 anni di esperienza nel settore turistico, Marco ha fondato CAV con la visione di offrire un'ospitalità autentica e di qualità.
             </p>
           </CardContent>
         </Card>
 
         <!-- Team Member 2 -->
-        <Card className="card-hover">
-          <div class="relative">
-            <img 
-              src="https://images.unsplash.com/photo-1494790108755-2616b332e234?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" 
-              alt="Giulia Bianchi - Responsabile Prenotazioni"
-              class="w-full h-64 object-cover rounded-t-2xl"
-            />
-            <div class="absolute top-4 left-4">
-              <Badge variant="accent">Prenotazioni</Badge>
-            </div>
-          </div>
+        <Card className="card-hover text-center">
           <CardHeader>
-            <CardTitle className="text-xl">Giulia Bianchi</CardTitle>
-            <CardDescription>Responsabile Prenotazioni</CardDescription>
+            <div class="w-24 h-24 bg-accent-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Icon name="user-check" size={32} color="white" />
+            </div>
+            <CardTitle className="text-xl">Laura Bianchi</CardTitle>
+            <p class="text-neutral-600">Responsabile Accoglienza</p>
           </CardHeader>
           <CardContent>
-            <p class="text-sm text-neutral-600">
-              Il primo volto che incontrerete, Giulia gestisce le prenotazioni e l'accoglienza con professionalità e il sorriso che caratterizza il nostro team.
+            <p class="text-neutral-600 text-sm">
+              Laura si occupa dell'accoglienza degli ospiti e della gestione delle prenotazioni, garantendo un servizio sempre attento e personalizzato.
             </p>
           </CardContent>
         </Card>
 
         <!-- Team Member 3 -->
-        <Card className="card-hover">
-          <div class="relative">
-            <img 
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" 
-              alt="Luca Verdi - Manutenzione"
-              class="w-full h-64 object-cover rounded-t-2xl"
-            />
-            <div class="absolute top-4 left-4">
-              <Badge variant="success">Manutenzione</Badge>
-            </div>
-          </div>
+        <Card className="card-hover text-center">
           <CardHeader>
-            <CardTitle className="text-xl">Luca Verdi</CardTitle>
-            <CardDescription>Responsabile Manutenzione</CardDescription>
+            <div class="w-24 h-24 bg-success-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Icon name="user-check" size={32} color="white" />
+            </div>
+            <CardTitle className="text-xl">Giuseppe Verdi</CardTitle>
+            <p class="text-neutral-600">Coordinatore Manutenzione</p>
           </CardHeader>
           <CardContent>
-            <p class="text-sm text-neutral-600">
-              Luca si occupa della manutenzione e del perfetto funzionamento di tutti gli appartamenti, garantendo sempre il massimo comfort per i nostri ospiti.
+            <p class="text-neutral-600 text-sm">
+              Giuseppe coordina la manutenzione e la pulizia degli appartamenti, assicurando che tutto sia sempre perfetto per i nostri ospiti.
             </p>
           </CardContent>
         </Card>
@@ -334,149 +390,91 @@ import { Badge } from '../components/ui/Badge'
     </div>
   </section>
 
-  <!-- Filosofia dell'Ospitalità -->
-  <section class="section-padding bg-gradient-to-r from-primary-50 to-accent-50">
+  <!-- Riconoscimenti -->
+  <section class="section-padding bg-gradient-to-br from-accent-50 to-accent-100">
     <div class="container-custom">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-6 text-neutral-900">
-          La Nostra Filosofia dell'Ospitalità
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 text-neutral-900">
+          Riconoscimenti e Certificazioni
         </h2>
-        
-        <div class="prose prose-lg mx-auto text-neutral-700 mb-8">
-          <p class="text-xl leading-relaxed">
-            "L'ospitalità non è solo fornire un alloggio, ma creare <strong>esperienze indimenticabili</strong> che rimangono nel cuore dei nostri ospiti molto tempo dopo la loro partenza."
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+          La qualità del nostro servizio riconosciuta ufficialmente
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Certificazione 1 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="award" size={32} color="white" />
+          </div>
+          <h3 class="text-lg font-semibold mb-2 text-neutral-900">Certificazione Qualità</h3>
+          <p class="text-neutral-600 text-sm">
+            Certificati per gli standard elevati di pulizia e servizio
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-          <div class="text-left">
-            <h3 class="text-2xl font-heading font-semibold mb-4 text-neutral-900">
-              La Nostra Promessa
-            </h3>
-            <ul class="space-y-3 text-neutral-700">
-              <li class="flex items-start space-x-3">
-                <svg class="w-5 h-5 text-primary-600 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span>Appartamenti sempre impeccabili e accoglienti</span>
-              </li>
-              <li class="flex items-start space-x-3">
-                <svg class="w-5 h-5 text-primary-600 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span>Assistenza 24/7 per qualsiasi necessità</span>
-              </li>
-              <li class="flex items-start space-x-3">
-                <svg class="w-5 h-5 text-primary-600 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span>Consigli autentici sulla Costa degli Etruschi</span>
-              </li>
-            </ul>
+        <!-- Certificazione 2 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-accent-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="star" size={32} color="white" />
           </div>
+          <h3 class="text-lg font-semibold mb-2 text-neutral-900">Superhost</h3>
+          <p class="text-neutral-600 text-sm">
+            Riconoscimento per eccellenza nell'ospitalità
+          </p>
+        </div>
 
-          <div class="text-left">
-            <h3 class="text-2xl font-heading font-semibold mb-4 text-neutral-900">
-              Cosa Ci Rende Speciali
-            </h3>
-            <ul class="space-y-3 text-neutral-700">
-              <li class="flex items-start space-x-3">
-                <svg class="w-5 h-5 text-accent-600 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span>Passione autentica per la nostra terra</span>
-              </li>
-              <li class="flex items-start space-x-3">
-                <svg class="w-5 h-5 text-accent-600 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span>Rapporto personale con ogni ospite</span>
-              </li>
-              <li class="flex items-start space-x-3">
-                <svg class="w-5 h-5 text-accent-600 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                <span>Attenzione maniacale per i dettagli</span>
-              </li>
-            </ul>
+        <!-- Certificazione 3 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-success-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="shield" size={32} color="white" />
           </div>
+          <h3 class="text-lg font-semibold mb-2 text-neutral-900">Sicurezza</h3>
+          <p class="text-neutral-600 text-sm">
+            Conformità a tutte le normative di sicurezza
+          </p>
+        </div>
+
+        <!-- Certificazione 4 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-warning-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="heart" size={32} color="white" />
+          </div>
+          <h3 class="text-lg font-semibold mb-2 text-neutral-900">Eco-Friendly</h3>
+          <p class="text-neutral-600 text-sm">
+            Impegno per la sostenibilità ambientale
+          </p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="section-padding bg-primary-600 text-white">
+  <section class="section-padding bg-gradient-to-br from-primary-600 to-primary-800">
     <div class="container-custom">
-      <div class="text-center max-w-3xl mx-auto">
+      <div class="text-center text-white">
         <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-          Vieni a Conoscerci
+          Scopri la Differenza CAV
         </h2>
-        <p class="text-xl mb-8 text-primary-100">
-          Saremo felici di accoglierti e farti vivere un'esperienza autentica della Costa degli Etruschi
+        <p class="text-lg mb-8 max-w-2xl mx-auto opacity-90">
+          Vieni a scoprire perché tanti ospiti scelgono CAV Costa degli Etruschi per le loro vacanze in Toscana
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contatti#prenotazione" class="btn-accent btn-lg">
+          <a 
+            href="/contatti#prenotazione"
+            class="btn-accent btn-lg font-semibold"
+          >
             Prenota Ora
           </a>
-          <a href="/contatti" class="btn-outline btn-lg border-white text-white hover:bg-white hover:text-primary-600">
-            Contattaci
+          <a 
+            href="/appartamenti"
+            class="btn-outline-white btn-lg"
+          >
+            Vedi gli Appartamenti
           </a>
         </div>
       </div>
     </div>
   </section>
-</Layout>
-
-<!-- TODO: Aggiungere sezione certificazioni e riconoscimenti -->
-<!-- TODO: Implementare sezione news/blog aziendale -->
-<!-- TODO: Aggiungere timeline interattiva della storia -->
-<!-- TODO: Inserire video di presentazione aziendale -->
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "CAV Costa degli Etruschi",
-  "description": "Appartamenti vacanze a San Vincenzo specializzati in ospitalità di qualità",
-  "url": "https://cavcostadeglietruschi.it",
-  "logo": "https://cavcostadeglietruschi.it/images/logo.png",
-  "foundingDate": "2010",
-  "founders": [
-    {
-      "@type": "Person",
-      "name": "Marco Rossi",
-      "jobTitle": "Fondatore e Direttore"
-    }
-  ],
-  "employee": [
-    {
-      "@type": "Person",
-      "name": "Giulia Bianchi",
-      "jobTitle": "Responsabile Prenotazioni"
-    },
-    {
-      "@type": "Person",
-      "name": "Luca Verdi",
-      "jobTitle": "Responsabile Manutenzione"
-    }
-  ],
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Via Roma, 123",
-    "addressLocality": "San Vincenzo",
-    "addressRegion": "Toscana",
-    "postalCode": "57027",
-    "addressCountry": "IT"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+39 123 456 7890",
-    "contactType": "customer service"
-  },
-  "sameAs": [
-    "https://www.facebook.com/cavcostadeglietruschi",
-    "https://www.instagram.com/cavcostadeglietruschi"
-  ]
-}
-</script> 
+</Layout> 

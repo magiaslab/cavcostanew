@@ -29,6 +29,25 @@ import {
   AirVent,
   Camera,
   Snowflake,
+  // Social Media
+  Facebook,
+  Instagram,
+  Twitter,
+  // Menu e UI
+  Menu,
+  Star,
+  Mail,
+  // Icone per caratteristiche sito
+  Landmark,
+  Wine,
+  Mountain,
+  // Icone per valori aziendali
+  Award,
+  Target,
+  Zap,
+  UserCheck,
+  // Icone per contatti
+  MessageCircle,
   type LucideIcon 
 } from 'lucide-react'
 
@@ -48,6 +67,36 @@ const iconMap: Record<string, LucideIcon> = {
   'eye': Eye,
   'car': Car,
   'check': Check,
+  
+  // Social Media
+  'facebook': Facebook,
+  'instagram': Instagram,
+  'twitter': Twitter,
+  
+  // Menu e UI
+  'menu': Menu,
+  'star': Star,
+  'mail': Mail,
+  'email': Mail,
+  
+  // Icone per caratteristiche homepage
+  'landmark': Landmark,
+  'wine': Wine,
+  'mountain': Mountain,
+  
+  // Icone per valori aziendali
+  'award': Award,
+  'handshake': Heart, // Sostituito con Heart perché Handshake non esiste
+  'handheart': Heart, // Sostituito con Heart perché HandHeart non esiste
+  'target': Target,
+  'zap': Zap,
+  'user-check': UserCheck,
+  
+  // Icone per contatti
+  'phone': Phone,
+  'message': MessageCircle,
+  'location': MapPin,
+  'map': MapPin,
   
   // Amenities cucina
   'cucina': ChefHat,

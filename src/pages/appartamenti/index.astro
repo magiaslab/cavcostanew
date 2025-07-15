@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/Card'
 import { Badge } from '../../components/ui/Badge'
+import { Icon } from '../../components/ui/Icon'
 import { apartments } from '../../data/apartments'
 import { formatPrice } from '../../lib/utils'
 ---
@@ -242,69 +243,60 @@ import { formatPrice } from '../../lib/utils'
     </div>
   </section>
 
-  <!-- Vantaggi - Spaziatura ridotta -->
-  <section class="py-12 bg-neutral-50">
+  <!-- Vantaggi della Prenotazione -->
+  <section class="section-padding bg-gradient-to-br from-primary-50 to-accent-50">
     <div class="container-custom">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-heading font-bold mb-4 text-neutral-900">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 text-neutral-900">
           Perché Scegliere i Nostri Appartamenti
         </h2>
         <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
-          Ogni appartamento è stato accuratamente selezionato e preparato per garantirti il massimo comfort
+          Vantaggi esclusivi per i nostri ospiti
         </p>
       </div>
-
+      
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Pulizia -->
+        <!-- Posizione Strategica -->
         <div class="text-center">
           <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
+            <Icon name="location" size={32} color="white" />
           </div>
-          <h3 class="text-xl font-semibold mb-2 text-neutral-900">Pulizia Impeccabile</h3>
+          <h3 class="text-xl font-semibold mb-2 text-neutral-900">Posizione Strategica</h3>
           <p class="text-neutral-600 text-sm">
-            Ogni appartamento viene sanificato e pulito accuratamente prima di ogni arrivo
+            Tutti gli appartamenti sono situati in posizioni privilegiate vicino al mare e ai servizi
           </p>
         </div>
 
-        <!-- Comfort -->
+        <!-- Qualità Garantita -->
         <div class="text-center">
           <div class="w-16 h-16 bg-accent-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-            </svg>
+            <Icon name="shield" size={32} color="white" />
           </div>
-          <h3 class="text-xl font-semibold mb-2 text-neutral-900">Massimo Comfort</h3>
+          <h3 class="text-xl font-semibold mb-2 text-neutral-900">Qualità Garantita</h3>
           <p class="text-neutral-600 text-sm">
-            Arredi moderni e funzionali per farti sentire come a casa tua
+            Ogni appartamento è selezionato e ispezionato secondo i nostri standard elevati
           </p>
         </div>
 
-        <!-- Posizione -->
+        <!-- Supporto 24/7 -->
         <div class="text-center">
           <div class="w-16 h-16 bg-success-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold mb-2 text-neutral-900">Posizione Ideale</h3>
-          <p class="text-neutral-600 text-sm">
-            Tutti i nostri appartamenti si trovano in posizioni strategiche vicino al mare
-          </p>
-        </div>
-
-        <!-- Supporto -->
-        <div class="text-center">
-          <div class="w-16 h-16 bg-warning-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 110 19.5 9.75 9.75 0 010-19.5zm0 0V5.25m0 13.5v3m0-16.5h3m-13.5 0h3m11.25 11.25h3m-16.5 0h3"/>
-            </svg>
+            <Icon name="phone" size={32} color="white" />
           </div>
           <h3 class="text-xl font-semibold mb-2 text-neutral-900">Supporto 24/7</h3>
           <p class="text-neutral-600 text-sm">
-            Il nostro staff è sempre disponibile per qualsiasi necessità
+            Assistenza sempre disponibile per qualsiasi necessità durante il soggiorno
+          </p>
+        </div>
+
+        <!-- Prenotazione Facile -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-warning-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="check" size={32} color="white" />
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-neutral-900">Prenotazione Facile</h3>
+          <p class="text-neutral-600 text-sm">
+            Processo di prenotazione semplice e veloce con conferma immediata
           </p>
         </div>
       </div>

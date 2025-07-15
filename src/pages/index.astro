@@ -2,12 +2,16 @@
 import Layout from '../layouts/Layout.astro'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card'
 import { Badge } from '../components/ui/Badge'
+import { Icon } from '../components/ui/Icon'
 import { apartments } from '../data/apartments'
-import { testimonials, getRecentTestimonials, getAverageRating } from '../data/testimonials'
 import { territorySections } from '../data/territory'
+import { testimonials } from '../data/testimonials'
 
-const recentTestimonials = getRecentTestimonials(6)
-const averageRating = getAverageRating()
+// Calcola la media delle recensioni
+const averageRating = testimonials.reduce((sum, testimonial) => sum + testimonial.rating, 0) / testimonials.length
+
+// Prendi solo le ultime 6 recensioni
+const recentTestimonials = testimonials.slice(-6)
 ---
 
 <Layout 
@@ -16,44 +20,42 @@ const averageRating = getAverageRating()
   keywords="appartamenti San Vincenzo, vacanze Costa Etruschi, bilocale trilocale, affitto vacanze Toscana, appartamenti vista mare"
 >
   <!-- Hero Section -->
-  <section class="relative h-screen flex items-center justify-center overflow-hidden">
-    <!-- Overlay per migliorare la leggibilità -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
-    
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <!-- Video Background -->
-    <video 
-      autoplay 
-      muted 
-      loop 
-      playsinline
-      class="absolute inset-0 w-full h-full object-cover"
-      poster="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
-    >
-      <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4" type="video/mp4">
-      <!-- Fallback per browser che non supportano il video -->
-      <img 
-        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
-        alt="Appartamenti fronte mare San Vincenzo Costa Etruschi"
-        class="w-full h-full object-cover"
-      />
-    </video>
-
+    <div class="absolute inset-0 w-full h-full">
+      <video 
+        class="w-full h-full object-cover" 
+        autoplay 
+        muted 
+        loop 
+        playsinline
+        poster="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+      >
+        <source src="https://player.vimeo.com/external/194837908.sd.mp4?s=c350076905b61409c687728326955ff0c0b49c2d&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
+        <!-- Fallback per browser che non supportano video -->
+        <img 
+          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+          alt="Appartamenti fronte mare San Vincenzo Costa Etruschi"
+          class="w-full h-full object-cover"
+        />
+      </video>
+    </div>
+    
+    <!-- Overlay scuro per migliorare la leggibilità -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
+    
     <!-- Contenuto Hero -->
     <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-      <!-- Titolo con sfondo semi-trasparente per migliorare la leggibilità -->
-      <div class="bg-black/60 backdrop-blur-md rounded-2xl p-8 mb-6 border border-white/20">
-        <h1 class="text-4xl md:text-6xl font-heading font-black mb-4 text-white leading-tight">
-          Vacanze Indimenticabili a<br/>
-          <span class="text-accent-400">San Vincenzo</span>
-        </h1>
-        <p class="text-xl md:text-2xl font-medium text-white/90 max-w-2xl mx-auto">
-          Appartamenti CAV Costa degli Etruschi: la tua casa vacanze nel cuore della Toscana
-        </p>
-      </div>
-      
+      <h1 class="text-4xl md:text-6xl font-heading font-black mb-6 leading-tight">
+        Vacanze Indimenticabili a <br />
+        <span class="text-accent-400">San Vincenzo</span>
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 text-white/90 font-medium">
+        Appartamenti CAV Costa degli Etruschi: la tua casa vacanze nel cuore della Toscana
+      </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/contatti#prenotazione" class="btn-primary btn-lg shadow-lg">
-          Prenota Ora
+        <a href="/appartamenti" class="btn-primary btn-lg shadow-2xl">
+          Scopri i Nostri Appartamenti
         </a>
         <a href="/appartamenti" class="btn-outline btn-lg text-white border-white hover:bg-white hover:text-neutral-900 shadow-lg">
           Scopri gli Appartamenti
@@ -62,7 +64,7 @@ const averageRating = getAverageRating()
     </div>
   </section>
 
-  <!-- Perché Sceglierci Section -->
+  <!-- Caratteristiche Principali -->
   <section class="section-padding bg-white">
     <div class="container-custom">
       <div class="text-center mb-16">
@@ -70,7 +72,7 @@ const averageRating = getAverageRating()
           Perché Scegliere CAV Costa degli Etruschi
         </h2>
         <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
-          Scopri cosa rende speciale la tua vacanza con noi
+          Scopri i vantaggi di soggiornare nei nostri appartamenti selezionati
         </p>
       </div>
       
@@ -78,10 +80,7 @@ const averageRating = getAverageRating()
         <!-- Posizione Strategica -->
         <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-primary-50 to-primary-100 border-2 border-primary-200 shadow-medium hover:shadow-strong hover:scale-105 transition-all duration-300">
           <div class="w-16 h-16 bg-primary-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
+            <Icon name="location" size={32} color="white" />
           </div>
           <h3 class="text-xl font-bold mb-3 text-neutral-900">Posizione Strategica</h3>
           <p class="text-neutral-700 font-medium">
@@ -92,9 +91,7 @@ const averageRating = getAverageRating()
         <!-- Appartamenti Accoglienti -->
         <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-accent-50 to-accent-100 border-2 border-accent-200 shadow-medium hover:shadow-strong hover:scale-105 transition-all duration-300">
           <div class="w-16 h-16 bg-accent-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-            </svg>
+            <Icon name="home" size={32} color="white" />
           </div>
           <h3 class="text-xl font-bold mb-3 text-neutral-900">Appartamenti Accoglienti</h3>
           <p class="text-neutral-700 font-medium">
@@ -105,9 +102,7 @@ const averageRating = getAverageRating()
         <!-- Ospitalità Eccellente -->
         <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-success-50 to-success-100 border-2 border-success-200 shadow-medium hover:shadow-strong hover:scale-105 transition-all duration-300">
           <div class="w-16 h-16 bg-success-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-            </svg>
+            <Icon name="heart" size={32} color="white" />
           </div>
           <h3 class="text-xl font-bold mb-3 text-neutral-900">Ospitalità Eccellente</h3>
           <p class="text-neutral-700 font-medium">
@@ -191,10 +186,10 @@ const averageRating = getAverageRating()
     <div class="container-custom">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 text-neutral-900">
-          Scopri la Costa degli Etruschi
+          Scopri il Territorio
         </h2>
         <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
-          Un territorio ricco di storia, cultura e bellezze naturali
+          La Costa degli Etruschi offre infinite possibilità di scoperta
         </p>
       </div>
       
@@ -203,17 +198,7 @@ const averageRating = getAverageRating()
           <Card key={section.id} className="card-hover shadow-medium border-2 border-neutral-100">
             <CardHeader className="text-center">
               <div class={`w-16 h-16 bg-${section.color}-600 rounded-full flex items-center justify-center mx-auto mb-4`}>
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {section.icon === 'landmark' && (
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                  )}
-                  {section.icon === 'wine' && (
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
-                  )}
-                  {section.icon === 'mountain' && (
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3l4 6h6l4-6M3 14h18M12 20l9-6H3l9 6z"/>
-                  )}
-                </svg>
+                <Icon name={section.icon} size={32} color="white" />
               </div>
               <CardTitle className="text-xl">
                 {section.title}
@@ -223,14 +208,14 @@ const averageRating = getAverageRating()
               </CardDescription>
             </CardHeader>
             <CardContent>
-                             <ul class="space-y-2 text-sm text-neutral-600">
-                 {section.items.slice(0, 3).map((item) => (
-                   <li class="flex items-center space-x-2">
-                     <span class="w-2 h-2 bg-primary-600 rounded-full"></span>
-                     <span>{item.name}</span>
-                   </li>
-                 ))}
-               </ul>
+              <ul class="space-y-2 text-sm text-neutral-600">
+                {section.items.slice(0, 3).map((item) => (
+                  <li class="flex items-center space-x-2">
+                    <span class="w-2 h-2 bg-primary-600 rounded-full"></span>
+                    <span>{item.name}</span>
+                  </li>
+                ))}
+              </ul>
             </CardContent>
           </Card>
         ))}
@@ -252,13 +237,11 @@ const averageRating = getAverageRating()
           Cosa Dicono i Nostri Ospiti
         </h2>
         <div class="flex items-center justify-center space-x-2 mb-4">
-                     <div class="flex space-x-1">
-             {Array.from({ length: 5 }).map((_, i) => (
-               <svg class="w-5 h-5 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
-                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-               </svg>
-             ))}
-           </div>
+          <div class="flex space-x-1">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Icon name="star" size={20} color="#FA821F" />
+            ))}
+          </div>
           <span class="text-lg font-semibold text-neutral-900">{averageRating} su 5</span>
         </div>
         <p class="text-neutral-600">
@@ -279,13 +262,11 @@ const averageRating = getAverageRating()
                   <div class="text-sm text-neutral-500">{testimonial.location}</div>
                 </div>
               </div>
-                             <div class="flex space-x-1 mb-3">
-                 {Array.from({ length: testimonial.rating }).map((_, i) => (
-                   <svg class="w-4 h-4 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
-                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                   </svg>
-                 ))}
-               </div>
+              <div class="flex space-x-1 mb-3">
+                {Array.from({ length: testimonial.rating }).map((_, i) => (
+                  <Icon name="star" size={16} color="#FA821F" />
+                ))}
+              </div>
               <p class="text-neutral-600 text-sm italic mb-3">
                 "{testimonial.text}"
               </p>
@@ -301,27 +282,28 @@ const averageRating = getAverageRating()
     </div>
   </section>
 
-  <!-- CTA Final -->
-  <section class="section-padding bg-gradient-to-br from-primary-600 to-primary-800 text-white relative overflow-hidden">
-    <!-- Pattern decorativo -->
-    <div class="absolute inset-0 opacity-10">
-      <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-y-6"></div>
-    </div>
-    
-    <div class="container-custom relative">
-      <div class="text-center max-w-3xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-heading font-black mb-6 text-white">
-          Pronto per la Tua Vacanza da <span class="text-accent-400">Sogno</span>?
+  <!-- CTA Finale -->
+  <section class="section-padding bg-gradient-to-br from-primary-600 to-primary-800">
+    <div class="container-custom">
+      <div class="text-center text-white">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
+          Prenota la Tua Vacanza da Sogno
         </h2>
-        <p class="text-xl mb-8 text-white/90 font-medium">
-          Prenota ora il tuo appartamento e scopri la magia della Costa degli Etruschi
+        <p class="text-lg mb-8 max-w-2xl mx-auto opacity-90">
+          Non aspettare, le date migliori vanno a ruba! Prenota ora e inizia a sognare la tua vacanza perfetta sulla Costa degli Etruschi.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contatti#prenotazione" class="btn-accent btn-lg shadow-xl hover:shadow-2xl">
+          <a 
+            href="/contatti#prenotazione"
+            class="btn-accent btn-lg font-semibold shadow-2xl"
+          >
             Prenota Ora
           </a>
-          <a href="/contatti" class="btn-outline btn-lg border-2 border-white text-white hover:bg-white hover:text-primary-600 shadow-lg">
-            Contattaci
+          <a 
+            href="/appartamenti"
+            class="btn-outline-white btn-lg shadow-lg"
+          >
+            Esplora gli Appartamenti
           </a>
         </div>
       </div>
