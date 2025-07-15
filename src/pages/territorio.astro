@@ -1,0 +1,383 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card'
+import { Badge } from '../components/ui/Badge'
+import { territorySections, localEvents, getUpcomingEvents } from '../data/territory'
+
+const upcomingEvents = getUpcomingEvents()
+---
+
+<Layout 
+  title="Territorio"
+  description="Scopri la Costa degli Etruschi e San Vincenzo: cultura, enogastronomia, natura e attività outdoor. Guida completa ai borghi medievali, vini di Bolgheri e bellezze naturali della Toscana."
+  keywords="Costa degli Etruschi, San Vincenzo, Bolgheri, Suvereto, Castagneto Carducci, borghi medievali, vini Toscana, mare Toscana"
+>
+  <!-- Dati Strutturati Territorio -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "TouristDestination",
+      "name": "Costa degli Etruschi",
+      "description": "Un territorio ricco di storia, cultura e bellezze naturali da esplorare. Scopri borghi medievali, vini di Bolgheri e la natura incontaminata della Toscana.",
+      "url": "https://cavcostadeglietruschi.it/territorio",
+      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 43.0167,
+        "longitude": 10.5333
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Toscana",
+        "addressCountry": "IT"
+      },
+      "containsPlace": [
+        {
+          "@type": "City",
+          "name": "San Vincenzo"
+        },
+        {
+          "@type": "City", 
+          "name": "Bolgheri"
+        },
+        {
+          "@type": "City",
+          "name": "Suvereto"
+        },
+        {
+          "@type": "City",
+          "name": "Castagneto Carducci"
+        }
+      ],
+      "touristType": [
+        "Turismo culturale",
+        "Turismo enogastronomico",
+        "Turismo naturalistico",
+        "Turismo balneare"
+      ]
+    }
+  </script>
+  <!-- Hero Section -->
+  <section class="relative h-96 flex items-center justify-center overflow-hidden">
+    <!-- Overlay per migliorare la leggibilità -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
+    
+    <!-- Background con effetto animato -->
+    <div class="absolute inset-0 w-full h-full">
+      <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-success-600 via-success-700 to-success-800 opacity-90"></div>
+      <div class="absolute inset-0 w-full h-full" style="
+        background: 
+          radial-gradient(circle at 30% 70%, rgba(250, 130, 31, 0.2) 0%, transparent 50%),
+          radial-gradient(circle at 70% 30%, rgba(0, 113, 132, 0.2) 0%, transparent 50%);
+        animation: gradientMove 10s ease-in-out infinite;
+      "></div>
+    </div>
+
+    <!-- Contenuto Hero -->
+    <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
+      <!-- Titolo con sfondo semi-trasparente per migliorare la leggibilità -->
+      <div class="bg-black/60 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+        <h1 class="text-4xl md:text-5xl font-heading font-black mb-4 text-white leading-tight">
+          La Costa degli <span class="text-accent-400">Etruschi</span>
+        </h1>
+        <p class="text-xl md:text-2xl font-medium text-white/90">
+          Un territorio ricco di storia, cultura e bellezze naturali da esplorare
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Introduzione -->
+  <section class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-heading font-bold mb-6 text-neutral-900">
+          Benvenuti nella Costa degli Etruschi
+        </h2>
+        <div class="prose prose-lg mx-auto text-neutral-700">
+          <p class="mb-6">
+            La Costa degli Etruschi è una delle zone più affascinanti della Toscana, che si estende lungo il litorale tirrenico da Livorno a Piombino. San Vincenzo, situato nel cuore di questo territorio, rappresenta il punto di partenza ideale per esplorare un paesaggio che unisce mare cristallino, dolci colline coperte di vigneti e borghi medievali perfettamente conservati.
+          </p>
+          <p>
+            Questo lembo di terra racconta millenni di storia, dalle antiche civiltà etrusche che hanno lasciato tracce indelebili nel territorio, fino alle moderne eccellenze enologiche che hanno reso famosa la zona di Bolgheri in tutto il mondo. Un equilibrio perfetto tra tradizione e innovazione, natura e cultura, mare e collina.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sezioni Principali -->
+  {territorySections.map((section) => (
+    <section class="section-padding bg-neutral-50">
+      <div class="container-custom">
+        <div class="text-center mb-16">
+          <div class={`w-20 h-20 bg-${section.color}-600 rounded-full flex items-center justify-center mx-auto mb-6`}>
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {section.icon === 'landmark' && (
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+              )}
+              {section.icon === 'wine' && (
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
+              )}
+              {section.icon === 'mountain' && (
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3l4 6h6l4-6M3 14h18M12 20l9-6H3l9 6z"/>
+              )}
+            </svg>
+          </div>
+          <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 text-neutral-900">
+            {section.title}
+          </h2>
+          <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+            {section.description}
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {section.items.map((item) => (
+            <Card className="card-hover overflow-hidden">
+              <div class="relative h-48 overflow-hidden">
+                <img 
+                  src={item.image} 
+                  alt={item.name}
+                  class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                />
+                <div class="absolute top-4 left-4">
+                  <Badge variant="secondary" className="text-xs">
+                    {item.distance}
+                  </Badge>
+                </div>
+              </div>
+              <CardHeader>
+                <CardTitle className="text-xl">
+                  {item.name}
+                </CardTitle>
+                <CardDescription>
+                  {item.description}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div class="space-y-3">
+                  <div class="flex flex-wrap gap-2">
+                    {item.highlights.map((highlight) => (
+                      <Badge variant="outline" className="text-xs">
+                        {highlight}
+                      </Badge>
+                    ))}
+                  </div>
+                  {item.link && (
+                    <a 
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="btn-primary btn-sm w-full"
+                    >
+                      Scopri di più
+                    </a>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Eventi Locali -->
+  <section class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 text-neutral-900">
+          Eventi e Tradizioni Locali
+        </h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+          Scopri i principali eventi che animano la Costa degli Etruschi durante l'anno
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {localEvents.map((event) => (
+          <Card className="card-hover overflow-hidden">
+            <div class="relative h-40 overflow-hidden">
+              <img 
+                src={event.image} 
+                alt={event.name}
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute top-4 left-4">
+                <Badge variant="accent" className="text-xs">
+                  {event.category}
+                </Badge>
+              </div>
+            </div>
+            <CardHeader>
+              <CardTitle className="text-lg">
+                {event.name}
+              </CardTitle>
+              <CardDescription className="text-sm">
+                📍 {event.location}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p class="text-sm text-neutral-600 mb-3">
+                {event.description}
+              </p>
+              <div class="text-xs text-neutral-500">
+                📅 {new Date(event.date).toLocaleDateString('it-IT', { 
+                  day: 'numeric', 
+                  month: 'long', 
+                  year: 'numeric' 
+                })}
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Consigli per la Visita -->
+  <section class="section-padding bg-neutral-50">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 text-neutral-900">
+          Consigli per la Visita
+        </h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+          Pianifica al meglio la tua esplorazione della Costa degli Etruschi
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Periodo Migliore -->
+        <Card className="card-hover">
+          <CardHeader>
+            <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+              </svg>
+            </div>
+            <CardTitle className="text-xl text-center">
+              Periodo Migliore
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-neutral-600 mb-4">
+              La Costa degli Etruschi è visitabile tutto l'anno, ma i periodi migliori sono:
+            </p>
+            <ul class="space-y-2 text-sm text-neutral-700">
+              <li>• <strong>Primavera (Marzo-Maggio):</strong> Clima mite, fioritura dei campi</li>
+              <li>• <strong>Estate (Giugno-Settembre):</strong> Mare, eventi, festival</li>
+              <li>• <strong>Autunno (Ottobre-Novembre):</strong> Vendemmia, sagre, colori</li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        <!-- Trasporti -->
+        <Card className="card-hover">
+          <CardHeader>
+            <div class="w-16 h-16 bg-accent-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z M13 16v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6M8 16V4a1 1 0 011-1h4a1 1 0 011 1v12"/>
+              </svg>
+            </div>
+            <CardTitle className="text-xl text-center">
+              Come Muoversi
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-neutral-600 mb-4">
+              Per esplorare al meglio il territorio:
+            </p>
+            <ul class="space-y-2 text-sm text-neutral-700">
+              <li>• <strong>Auto:</strong> Consigliata per maggiore libertà</li>
+              <li>• <strong>Bicicletta:</strong> Perfetta per la costa e le colline</li>
+              <li>• <strong>Trasporti pubblici:</strong> Collegamenti tra i borghi</li>
+              <li>• <strong>Tour organizzati:</strong> Disponibili per vino e cultura</li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        <!-- Cosa Portare -->
+        <Card className="card-hover">
+          <CardHeader>
+            <div class="w-16 h-16 bg-success-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+              </svg>
+            </div>
+            <CardTitle className="text-xl text-center">
+              Cosa Portare
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-neutral-600 mb-4">
+              Per una visita confortevole:
+            </p>
+            <ul class="space-y-2 text-sm text-neutral-700">
+              <li>• <strong>Abbigliamento:</strong> Comodo e a strati</li>
+              <li>• <strong>Scarpe:</strong> Da trekking per i sentieri</li>
+              <li>• <strong>Protezione solare:</strong> Cappello e crema</li>
+              <li>• <strong>Macchina fotografica:</strong> Per immortalare i paesaggi</li>
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-primary-600 text-white">
+    <div class="container-custom">
+      <div class="text-center max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
+          Prenota il Tuo Soggiorno
+        </h2>
+        <p class="text-xl mb-8 text-primary-100">
+          Scegli CAV Costa degli Etruschi come base per esplorare questo territorio meraviglioso
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contatti#prenotazione" class="btn-accent btn-lg">
+            Prenota Ora
+          </a>
+          <a href="/appartamenti" class="btn-outline btn-lg border-white text-white hover:bg-white hover:text-primary-600">
+            Vedi Appartamenti
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<!-- TODO: Aggiungere mappa interattiva del territorio -->
+<!-- TODO: Implementare filtri per categoria di attività -->
+<!-- TODO: Aggiungere calendario eventi dinamico -->
+<!-- TODO: Inserire JSON-LD per luoghi e eventi -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  "name": "Costa degli Etruschi",
+  "description": "Territorio ricco di storia, cultura e bellezze naturali in Toscana",
+  "url": "https://cavcostadeglietruschi.it/territorio",
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "Toscana",
+    "addressCountry": "IT"
+  },
+  "touristType": ["Cultura", "Enogastronomia", "Natura", "Storia"],
+  "includesAttraction": [
+    {
+      "@type": "TouristAttraction",
+      "name": "Parco Archeologico di Baratti e Populonia",
+      "description": "Importante sito archeologico etrusco"
+    },
+    {
+      "@type": "TouristAttraction", 
+      "name": "Strada del Vino di Bolgheri",
+      "description": "Percorso enologico attraverso le cantine famose"
+    }
+  ]
+}
+</script> 

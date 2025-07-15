@@ -1,0 +1,438 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/Card'
+import { Badge } from '../../components/ui/Badge'
+import { apartments } from '../../data/apartments'
+import { formatPrice } from '../../lib/utils'
+---
+
+<Layout 
+  title="Appartamenti"
+  description="Scopri tutti i nostri appartamenti vacanze a San Vincenzo: bilocali, trilocali e monolocali. Scegli la soluzione perfetta per le tue vacanze sulla Costa degli Etruschi."
+  keywords="appartamenti San Vincenzo, bilocale trilocale monolocale, appartamenti vacanze Toscana, affitto Costa Etruschi"
+>
+  <!-- Dati Strutturati Lista Appartamenti -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Appartamenti Vacanze CAV Costa degli Etruschi",
+      "description": "Lista completa dei nostri appartamenti vacanze a San Vincenzo: bilocali, trilocali e monolocali per le tue vacanze in Toscana.",
+      "url": "https://cavcostadeglietruschi.it/appartamenti",
+      "numberOfItems": ${apartments.length},
+      "itemListElement": [
+        ${apartments.map((apartment, index) => `
+          {
+            "@type": "ListItem",
+            "position": ${index + 1},
+            "item": {
+              "@type": "Accommodation",
+              "name": "${apartment.name}",
+              "description": "${apartment.description}",
+              "url": "https://cavcostadeglietruschi.it/appartamenti/${apartment.slug}",
+              "image": "${apartment.images.main}",
+              "accommodationCategory": "${apartment.type}",
+              "occupancy": {
+                "@type": "QuantitativeValue",
+                "maxValue": ${apartment.capacity}
+              },
+              "offers": {
+                "@type": "Offer",
+                "priceRange": "€${apartment.price.low}-€${apartment.price.high}",
+                "priceCurrency": "EUR"
+              }
+            }
+          }
+        `).join(', ')}
+      ]
+    }
+  </script>
+  <!-- Hero Section -->
+  <section class="relative h-80 flex items-center justify-center overflow-hidden">
+    <!-- Overlay per migliorare la leggibilità -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
+    
+    <!-- Background con effetto animato -->
+    <div class="absolute inset-0 w-full h-full">
+      <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 opacity-90"></div>
+      <div class="absolute inset-0 w-full h-full" style="
+        background: 
+          radial-gradient(circle at 20% 80%, rgba(250, 130, 31, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(0, 113, 132, 0.3) 0%, transparent 50%);
+        animation: gradientMove 8s ease-in-out infinite;
+      "></div>
+    </div>
+
+    <!-- Contenuto Hero -->
+    <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
+      <!-- Titolo con sfondo semi-trasparente per migliorare la leggibilità -->
+      <div class="bg-black/60 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+        <h1 class="text-4xl md:text-5xl font-heading font-black mb-4 text-white leading-tight">
+          I Nostri <span class="text-accent-400">Appartamenti</span>
+        </h1>
+        <p class="text-xl md:text-2xl font-medium text-white/90">
+          Scegli la soluzione perfetta per le tue vacanze
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <nav class="bg-neutral-100 py-4">
+    <div class="container-custom">
+      <div class="flex items-center space-x-2 text-sm text-neutral-600">
+        <a href="/" class="hover:text-primary-600">Home</a>
+        <span>›</span>
+        <span class="text-neutral-900">Appartamenti</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Introduzione -->
+  <section class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="text-3xl font-heading font-bold mb-6 text-neutral-900">
+          Appartamenti per Ogni Esigenza
+        </h2>
+        <p class="text-lg text-neutral-600 mb-8">
+          Dai monolocali romantici ai trilocali spaziosi per famiglie, tutti i nostri appartamenti sono arredati con gusto e dotati di ogni comfort per rendere la tua vacanza indimenticabile.
+        </p>
+        
+        <!-- Statistiche -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-primary-600 mb-2">{apartments.length}</div>
+            <div class="text-sm text-neutral-600">Appartamenti Disponibili</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-accent-600 mb-2">100%</div>
+            <div class="text-sm text-neutral-600">Soddisfazione Clienti</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-success-600 mb-2">24/7</div>
+            <div class="text-sm text-neutral-600">Assistenza Disponibile</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filtri e Ordinamento -->
+  <section class="py-8 bg-neutral-50">
+    <div class="container-custom">
+      <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+        <div class="flex items-center space-x-4 mb-4 md:mb-0">
+          <h3 class="text-lg font-semibold text-neutral-900">Filtri:</h3>
+          <div class="flex space-x-2">
+            <Badge variant="outline" className="cursor-pointer hover:bg-primary-100">
+              Tutti
+            </Badge>
+            <Badge variant="outline" className="cursor-pointer hover:bg-primary-100">
+              Bilocale
+            </Badge>
+            <Badge variant="outline" className="cursor-pointer hover:bg-primary-100">
+              Trilocale
+            </Badge>
+            <Badge variant="outline" className="cursor-pointer hover:bg-primary-100">
+              Monolocale
+            </Badge>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+          <span class="text-sm text-neutral-600">Ordina per:</span>
+          <select class="px-3 py-2 border border-neutral-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+            <option value="price-asc">Prezzo (crescente)</option>
+            <option value="price-desc">Prezzo (decrescente)</option>
+            <option value="capacity">Capacità</option>
+            <option value="size">Dimensioni</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Griglia Appartamenti -->
+  <section class="section-padding bg-gradient-to-br from-neutral-50 to-neutral-100">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {apartments.map((apartment) => (
+          <Card className="card-hover overflow-hidden shadow-medium border-2 border-white/50">
+            <div class="relative h-64 overflow-hidden">
+              <img 
+                src={apartment.images.main} 
+                alt={apartment.name}
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div class="absolute top-4 left-4">
+                <Badge variant="accent" className="text-xs">
+                  {apartment.type}
+                </Badge>
+              </div>
+              <div class="absolute top-4 right-4">
+                <div class="bg-black/70 text-white px-2 py-1 rounded text-xs">
+                  {apartment.capacity.guests} ospiti
+                </div>
+              </div>
+            </div>
+            
+            <CardHeader>
+              <div class="flex justify-between items-start">
+                <div>
+                  <CardTitle className="text-xl mb-2">
+                    {apartment.name}
+                  </CardTitle>
+                  <CardDescription>
+                    {apartment.shortDescription}
+                  </CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            
+            <CardContent>
+              <!-- Caratteristiche Principali -->
+              <div class="grid grid-cols-3 gap-4 mb-4 p-3 bg-neutral-50 rounded-lg">
+                <div class="text-center">
+                  <div class="text-lg font-semibold text-primary-600">{apartment.capacity.guests}</div>
+                  <div class="text-xs text-neutral-600">Ospiti</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-lg font-semibold text-primary-600">{apartment.capacity.bedrooms}</div>
+                  <div class="text-xs text-neutral-600">Camere</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-lg font-semibold text-primary-600">{apartment.size}</div>
+                  <div class="text-xs text-neutral-600">m²</div>
+                </div>
+              </div>
+
+              <!-- Servizi Principali -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                {apartment.amenities.slice(0, 3).map((amenity) => (
+                  <Badge variant="secondary" className="text-xs">
+                    {amenity}
+                  </Badge>
+                ))}
+                {apartment.amenities.length > 3 && (
+                  <Badge variant="outline" className="text-xs">
+                    +{apartment.amenities.length - 3} altri
+                  </Badge>
+                )}
+              </div>
+
+              <!-- Prezzo e Azione -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <div class="text-2xl font-bold text-primary-600">
+                    €{apartment.price.low} - €{apartment.price.high}
+                  </div>
+                  <div class="text-sm text-neutral-500">per notte</div>
+                </div>
+                <div class="flex flex-col space-y-2">
+                  <a 
+                    href={`/appartamenti/${apartment.slug}`}
+                    class="btn-primary btn-sm"
+                  >
+                    Dettagli
+                  </a>
+                  <a 
+                    href="/contatti#prenotazione"
+                    class="btn-outline btn-sm text-xs"
+                  >
+                    Prenota
+                  </a>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Vantaggi -->
+  <section class="section-padding bg-neutral-50">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-heading font-bold mb-4 text-neutral-900">
+          Perché Scegliere i Nostri Appartamenti
+        </h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+          Ogni appartamento è stato accuratamente selezionato e preparato per garantirti il massimo comfort
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Pulizia -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-neutral-900">Pulizia Impeccabile</h3>
+          <p class="text-neutral-600 text-sm">
+            Ogni appartamento viene sanificato e pulito accuratamente prima di ogni arrivo
+          </p>
+        </div>
+
+        <!-- Comfort -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-accent-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-neutral-900">Massimo Comfort</h3>
+          <p class="text-neutral-600 text-sm">
+            Arredi moderni e funzionali per farti sentire come a casa tua
+          </p>
+        </div>
+
+        <!-- Posizione -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-success-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-neutral-900">Posizione Strategica</h3>
+          <p class="text-neutral-600 text-sm">
+            Tutti i nostri appartamenti sono vicini al mare e ai servizi principali
+          </p>
+        </div>
+
+        <!-- Assistenza -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-neutral-900">Assistenza 24/7</h3>
+          <p class="text-neutral-600 text-sm">
+            Il nostro team è sempre disponibile per qualsiasi necessità
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-heading font-bold mb-4 text-neutral-900">
+          Domande Frequenti
+        </h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+          Risposte alle domande più comuni sui nostri appartamenti
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">È incluso il parcheggio?</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-neutral-600">
+              Sì, tutti i nostri appartamenti includono un posto auto privato gratuito.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">È possibile portare animali domestici?</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-neutral-600">
+              Gli animali domestici sono benvenuti in alcuni appartamenti. Contattaci per verificare la disponibilità.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Qual è la politica di cancellazione?</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-neutral-600">
+              Cancellazione gratuita fino a 7 giorni prima dell'arrivo. Contattaci per maggiori dettagli.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">È disponibile il Wi-Fi?</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-neutral-600">
+              Sì, tutti gli appartamenti sono dotati di connessione Wi-Fi gratuita ad alta velocità.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-primary-600 text-white">
+    <div class="container-custom">
+      <div class="text-center max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
+          Pronto per la Tua Vacanza?
+        </h2>
+        <p class="text-xl mb-8 text-primary-100">
+          Prenota ora il tuo appartamento e scopri la magia della Costa degli Etruschi
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contatti#prenotazione" class="btn-accent btn-lg">
+            Prenota Ora
+          </a>
+          <a href="/contatti" class="btn-outline btn-lg border-white text-white hover:bg-white hover:text-primary-600">
+            Contattaci
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<!-- TODO: Implementare filtri funzionali con JavaScript -->
+<!-- TODO: Aggiungere ordinamento dinamico -->
+<!-- TODO: Implementare paginazione per scale maggiori -->
+<!-- TODO: Aggiungere comparazione appartamenti -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Appartamenti CAV Costa degli Etruschi",
+  "description": "Lista completa degli appartamenti vacanze disponibili",
+  "itemListElement": [
+    {
+      "@type": "Apartment",
+      "name": "Bilocale Vista Mare",
+      "description": "Splendido bilocale con vista panoramica sul mare",
+      "url": "https://cavcostadeglietruschi.it/appartamenti/bilocale-vista-mare"
+    },
+    {
+      "@type": "Apartment", 
+      "name": "Trilocale Comfort",
+      "description": "Elegante trilocale nel centro di San Vincenzo",
+      "url": "https://cavcostadeglietruschi.it/appartamenti/trilocale-comfort"
+    },
+    {
+      "@type": "Apartment",
+      "name": "Monolocale Economico", 
+      "description": "Accogliente monolocale ideale per coppie",
+      "url": "https://cavcostadeglietruschi.it/appartamenti/monolocale-economico"
+    }
+  ]
+}
+</script> 

@@ -1,0 +1,496 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card'
+import { Input } from '../components/ui/Input'
+import { Textarea } from '../components/ui/Textarea'
+import { Button } from '../components/ui/Button'
+import { Badge } from '../components/ui/Badge'
+---
+
+<Layout 
+  title="Contatti"
+  description="Contattaci per prenotare il tuo appartamento vacanze a San Vincenzo. Modulo di contatto, telefono, email e mappa per raggiungerci facilmente."
+  keywords="contatti CAV, prenotazione San Vincenzo, appartamenti vacanze contatti, telefono CAV Costa Etruschi"
+>
+  <!-- Dati Strutturati Contatti -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "CAV Costa degli Etruschi",
+      "description": "Contattaci per prenotare il tuo appartamento vacanze a San Vincenzo. Assistenza dedicata per la tua vacanza perfetta in Toscana.",
+      "url": "https://cavcostadeglietruschi.it/contatti",
+      "image": "https://cavcostadeglietruschi.it/images/Logo-orizzontale.png",
+      "telephone": "+39 329 123 4567",
+      "email": "info@cavcostadeglietruschi.it",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Via della Costa",
+        "addressLocality": "San Vincenzo",
+        "addressRegion": "Toscana",
+        "postalCode": "57027",
+        "addressCountry": "IT"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 43.0167,
+        "longitude": 10.5333
+      },
+      "openingHours": "Mo-Su 08:00-20:00",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Appartamenti Vacanze",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Accommodation",
+              "name": "Bilocale"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Accommodation",
+              "name": "Trilocale"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Accommodation",
+              "name": "Monolocale"
+            }
+          }
+        ]
+      }
+    }
+  </script>
+  <!-- Hero Section -->
+  <section class="relative h-80 flex items-center justify-center overflow-hidden">
+    <!-- Overlay per migliorare la leggibilità -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
+    
+    <!-- Video Background -->
+    <video 
+      autoplay 
+      muted 
+      loop 
+      playsinline
+      class="absolute inset-0 w-full h-full object-cover"
+      poster="https://images.unsplash.com/photo-1486312338219-ce68e2c5b4d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
+    >
+      <source src="https://videos.pexels.com/video-files/2169880/2169880-uhd_2560_1440_30fps.mp4" type="video/mp4">
+      <!-- Fallback per browser che non supportano il video -->
+      <img 
+        src="https://images.unsplash.com/photo-1486312338219-ce68e2c5b4d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
+        alt="Contatti CAV Costa degli Etruschi"
+        class="w-full h-full object-cover"
+      />
+    </video>
+
+    <!-- Contenuto Hero -->
+    <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
+      <!-- Titolo con sfondo semi-trasparente per migliorare la leggibilità -->
+      <div class="bg-black/60 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+        <h1 class="text-4xl md:text-5xl font-heading font-black mb-4 text-white leading-tight">
+          <span class="text-accent-400">Contattaci</span>
+        </h1>
+        <p class="text-xl md:text-2xl font-medium text-white/90">
+          Siamo qui per rendere la tua vacanza indimenticabile
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contatti e Modulo -->
+  <section class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <!-- Informazioni di Contatto -->
+        <div class="space-y-8">
+          <div>
+            <h2 class="text-3xl font-heading font-bold mb-6 text-neutral-900">
+              Informazioni di Contatto
+            </h2>
+            <p class="text-lg text-neutral-600 mb-8">
+              Siamo sempre disponibili per rispondere alle tue domande e aiutarti a pianificare la tua vacanza perfetta a San Vincenzo.
+            </p>
+          </div>
+
+          <!-- Contatti Principali -->
+          <div class="space-y-6">
+            <Card className="card-hover">
+              <CardContent className="p-6">
+                <div class="flex items-center space-x-4">
+                  <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-neutral-900">Telefono</h3>
+                    <p class="text-neutral-600">+39 123 456 7890</p>
+                    <p class="text-sm text-neutral-500">Disponibile 9:00-20:00</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="card-hover">
+              <CardContent className="p-6">
+                <div class="flex items-center space-x-4">
+                  <div class="w-12 h-12 bg-accent-600 rounded-full flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-neutral-900">Email</h3>
+                    <p class="text-neutral-600">info@cavcostadeglietruschi.it</p>
+                    <p class="text-sm text-neutral-500">Risposta entro 24h</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="card-hover">
+              <CardContent className="p-6">
+                <div class="flex items-center space-x-4">
+                  <div class="w-12 h-12 bg-success-600 rounded-full flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-neutral-900">Indirizzo</h3>
+                    <p class="text-neutral-600">Via Roma, 123</p>
+                    <p class="text-neutral-600">57027 San Vincenzo (LI)</p>
+                    <p class="text-sm text-neutral-500">Toscana, Italia</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <!-- Orari -->
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-xl">Orari di Contatto</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between">
+                  <span class="text-neutral-600">Lunedì - Venerdì:</span>
+                  <span class="font-semibold">9:00 - 20:00</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-neutral-600">Sabato:</span>
+                  <span class="font-semibold">9:00 - 18:00</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-neutral-600">Domenica:</span>
+                  <span class="font-semibold">10:00 - 17:00</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <!-- Modulo di Contatto -->
+        <div>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-2xl">Invia un Messaggio</CardTitle>
+              <CardDescription>
+                Compila il modulo e ti risponderemo il prima possibile
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form class="space-y-6" method="POST" action="/api/contact">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="space-y-2">
+                    <label for="nome" class="text-sm font-medium text-neutral-700">Nome *</label>
+                    <Input 
+                      id="nome" 
+                      name="nome" 
+                      type="text" 
+                      placeholder="Il tuo nome"
+                      required
+                    />
+                  </div>
+                  <div class="space-y-2">
+                    <label for="cognome" class="text-sm font-medium text-neutral-700">Cognome *</label>
+                    <Input 
+                      id="cognome" 
+                      name="cognome" 
+                      type="text" 
+                      placeholder="Il tuo cognome"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="email" class="text-sm font-medium text-neutral-700">Email *</label>
+                  <Input 
+                    id="email" 
+                    name="email" 
+                    type="email" 
+                    placeholder="nome@email.com"
+                    required
+                  />
+                </div>
+
+                <div class="space-y-2">
+                  <label for="telefono" class="text-sm font-medium text-neutral-700">Telefono</label>
+                  <Input 
+                    id="telefono" 
+                    name="telefono" 
+                    type="tel" 
+                    placeholder="+39 123 456 7890"
+                  />
+                </div>
+
+                <div class="space-y-2">
+                  <label for="oggetto" class="text-sm font-medium text-neutral-700">Oggetto *</label>
+                  <select 
+                    id="oggetto" 
+                    name="oggetto" 
+                    class="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                    required
+                  >
+                    <option value="">Seleziona un oggetto</option>
+                    <option value="prenotazione">Richiesta Prenotazione</option>
+                    <option value="informazioni">Informazioni Generali</option>
+                    <option value="prezzi">Prezzi e Disponibilità</option>
+                    <option value="servizi">Servizi Aggiuntivi</option>
+                    <option value="altro">Altro</option>
+                  </select>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="messaggio" class="text-sm font-medium text-neutral-700">Messaggio *</label>
+                   <Textarea 
+                     id="messaggio" 
+                     name="messaggio" 
+                     placeholder="Scrivi qui il tuo messaggio..."
+                     rows={5}
+                     required
+                   />
+                </div>
+
+                <div class="flex items-center space-x-2">
+                  <input 
+                    type="checkbox" 
+                    id="privacy" 
+                    name="privacy"
+                    class="h-4 w-4 text-primary-600 rounded border-neutral-300 focus:ring-primary-500"
+                    required
+                  />
+                  <label for="privacy" class="text-sm text-neutral-600">
+                    Accetto la <a href="/privacy" class="text-primary-600 hover:underline">privacy policy</a> *
+                  </label>
+                </div>
+
+                <Button type="submit" className="w-full btn-primary">
+                  Invia Messaggio
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sezione Prenotazione -->
+  <section id="prenotazione" class="section-padding bg-neutral-50">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 text-neutral-900">
+          Prenota il Tuo Appartamento
+        </h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+          Scegli l'appartamento perfetto per la tua vacanza e contattaci per verificare la disponibilità
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Passaggio 1 -->
+        <Card className="card-hover">
+          <CardHeader className="text-center">
+            <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-white">1</span>
+            </div>
+            <CardTitle className="text-xl">Scegli l'Appartamento</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-neutral-600 mb-4">
+              Esplora i nostri appartamenti e scegli quello più adatto alle tue esigenze: bilocale, trilocale o monolocale.
+            </p>
+            <a href="/appartamenti" class="btn-outline btn-sm w-full">
+              Vedi Appartamenti
+            </a>
+          </CardContent>
+        </Card>
+
+        <!-- Passaggio 2 -->
+        <Card className="card-hover">
+          <CardHeader className="text-center">
+            <div class="w-16 h-16 bg-accent-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-white">2</span>
+            </div>
+            <CardTitle className="text-xl">Verifica Disponibilità</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-neutral-600 mb-4">
+              Contattaci con le tue date preferite e ti confermeremo subito la disponibilità dell'appartamento scelto.
+            </p>
+            <a href="#contatto" class="btn-outline btn-sm w-full">
+              Contattaci
+            </a>
+          </CardContent>
+        </Card>
+
+        <!-- Passaggio 3 -->
+        <Card className="card-hover">
+          <CardHeader className="text-center">
+            <div class="w-16 h-16 bg-success-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-white">3</span>
+            </div>
+            <CardTitle className="text-xl">Conferma e Prenota</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-neutral-600 mb-4">
+              Finalizza la prenotazione con i nostri operatori e ricevi tutte le informazioni per il tuo arrivo.
+            </p>
+            <Badge variant="success" className="w-full justify-center">
+              Prenotazione Confermata
+            </Badge>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mappa -->
+  <section class="py-16 bg-white">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-heading font-bold mb-4 text-neutral-900">
+          Come Raggiungerci
+        </h2>
+        <p class="text-lg text-neutral-600">
+          Siamo situati nel cuore di San Vincenzo, a pochi passi dal mare
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Mappa Placeholder -->
+        <div class="lg:col-span-2">
+          <div class="relative h-96 rounded-2xl overflow-hidden shadow-lg">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2867.8449772799033!2d10.547123!3d43.403611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d5e5b6e7b6b6b6%3A0x1234567890abcdef!2sSan%20Vincenzo%2C%20LI!5e0!3m2!1sit!2sit!4v1234567890123"
+              class="absolute inset-0 w-full h-full"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mappa CAV Costa degli Etruschi San Vincenzo">
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Indicazioni -->
+        <div class="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">🚗 In Auto</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p class="text-sm text-neutral-600">
+                Autostrada A12, uscita San Vincenzo. Seguire le indicazioni per il centro città.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">🚂 In Treno</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p class="text-sm text-neutral-600">
+                Stazione di Campiglia Marittima, poi autobus per San Vincenzo (15 min).
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">✈️ In Aereo</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p class="text-sm text-neutral-600">
+                Aeroporto di Pisa (80 km) o Firenze (150 km). Noleggio auto o transfer disponibili.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">🅿️ Parcheggio</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p class="text-sm text-neutral-600">
+                Parcheggio privato gratuito disponibile per i nostri ospiti.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<!-- TODO: Implementare API endpoint per gestire il modulo di contatto -->
+<!-- TODO: Aggiungere validazione client-side del modulo -->
+<!-- TODO: Implementare sistema di notifiche email -->
+<!-- TODO: Aggiungere chat live o WhatsApp widget -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "CAV Costa degli Etruschi",
+  "description": "Appartamenti vacanze a San Vincenzo",
+  "url": "https://cavcostadeglietruschi.it",
+  "telephone": "+39 123 456 7890",
+  "email": "info@cavcostadeglietruschi.it",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Via Roma, 123",
+    "addressLocality": "San Vincenzo",
+    "addressRegion": "Toscana",
+    "postalCode": "57027",
+    "addressCountry": "IT"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 43.403611,
+    "longitude": 10.547123
+  },
+  "openingHours": [
+    "Mo-Fr 09:00-20:00",
+    "Sa 09:00-18:00", 
+    "Su 10:00-17:00"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+39 123 456 7890",
+    "contactType": "customer service",
+    "availableLanguage": "Italian"
+  }
+}
+</script> 

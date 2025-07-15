@@ -1,0 +1,337 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/Card'
+import { Badge } from '../../components/ui/Badge'
+import { apartments, getApartmentBySlug } from '../../data/apartments'
+import { getTestimonialsByApartment } from '../../data/testimonials'
+
+// Genera le route statiche per tutti gli appartamenti
+export function getStaticPaths() {
+  return apartments.map(apartment => ({
+    params: { slug: apartment.slug },
+    props: { apartment }
+  }))
+}
+
+const { apartment } = Astro.props
+const apartmentTestimonials = getTestimonialsByApartment(apartment.name)
+
+if (!apartment) {
+  throw new Error('Appartamento non trovato')
+}
+
+// Genera la descrizione SEO con parole chiave
+const seoDescription = `${apartment.description.substring(0, 150)}... Prenota ora il tuo ${apartment.type.toLowerCase()} a San Vincenzo, Costa degli Etruschi.`
+const seoKeywords = apartment.seoKeywords.join(', ')
+---
+
+<Layout 
+  title={apartment.name}
+  description={seoDescription}
+  keywords={seoKeywords}
+  image={apartment.images.main}
+>
+  <!-- Dati Strutturati Appartamento -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "Accommodation",
+      "name": "${apartment.name}",
+      "description": "${apartment.description}",
+      "url": "https://cavcostadeglietruschi.it/appartamenti/${apartment.slug}",
+      "image": [
+        "${apartment.images.main}",
+        "${apartment.images.gallery.join('", "')}"
+      ],
+      "accommodationCategory": "${apartment.type}",
+      "occupancy": {
+        "@type": "QuantitativeValue",
+        "maxValue": ${apartment.capacity}
+      },
+      "numberOfRooms": ${apartment.rooms},
+      "floorSize": {
+        "@type": "QuantitativeValue",
+        "value": ${apartment.size},
+        "unitText": "m²"
+      },
+      "amenityFeature": [
+        ${apartment.features.map(feature => `{"@type": "LocationFeatureSpecification", "name": "${feature}"}`).join(', ')}
+      ],
+      "offers": {
+        "@type": "Offer",
+        "priceRange": "€${apartment.price.low}-€${apartment.price.high}",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      },
+      "provider": {
+        "@type": "LodgingBusiness",
+        "name": "CAV Costa degli Etruschi",
+        "url": "https://cavcostadeglietruschi.it"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "${apartmentTestimonials.reduce((sum, t) => sum + t.rating, 0) / apartmentTestimonials.length}",
+        "reviewCount": ${apartmentTestimonials.length}
+      }
+    }
+  </script>
+  <!-- Breadcrumb Navigation -->
+  <nav class="bg-neutral-100 py-4">
+    <div class="container-custom">
+      <div class="flex items-center space-x-2 text-sm text-neutral-600">
+        <a href="/" class="hover:text-primary-600">Home</a>
+        <span>›</span>
+        <a href="/appartamenti" class="hover:text-primary-600">Appartamenti</a>
+        <span>›</span>
+        <span class="text-neutral-900">{apartment.name}</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section con Galleria -->
+  <section class="py-8 bg-white">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Galleria Immagini -->
+        <div class="space-y-4">
+          <div class="relative h-96 overflow-hidden rounded-2xl">
+            <img 
+              src={apartment.images.main} 
+              alt={apartment.name}
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute top-4 left-4">
+              <Badge variant="accent" className="text-sm">
+                {apartment.type}
+              </Badge>
+            </div>
+          </div>
+          
+          <!-- Galleria Thumbnails -->
+          <div class="grid grid-cols-4 gap-2">
+            {apartment.images.gallery.map((image, index) => (
+              <div class="relative h-20 overflow-hidden rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                <img 
+                  src={image} 
+                  alt={`${apartment.name} - Immagine ${index + 1}`}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <!-- Informazioni Principali -->
+        <div class="space-y-6">
+          <div>
+            <h1 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-2">
+              {apartment.name}
+            </h1>
+            <p class="text-lg text-neutral-600 mb-4">
+              {apartment.shortDescription}
+            </p>
+            
+            <!-- Dettagli Capacità -->
+            <div class="grid grid-cols-3 gap-4 p-4 bg-neutral-50 rounded-xl">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-primary-600">{apartment.capacity.guests}</div>
+                <div class="text-sm text-neutral-600">Ospiti</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-primary-600">{apartment.capacity.bedrooms}</div>
+                <div class="text-sm text-neutral-600">Camere</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-primary-600">{apartment.size}</div>
+                <div class="text-sm text-neutral-600">m²</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Prezzo -->
+          <div class="p-6 bg-gradient-to-r from-primary-50 to-primary-100 rounded-2xl border border-primary-200">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-primary-900 mb-2">
+                €{apartment.price.low} - €{apartment.price.high}
+                <span class="text-lg font-normal text-primary-700">/notte</span>
+              </div>
+              <p class="text-sm text-primary-700 mb-4">
+                Prezzi variabili in base alla stagione
+              </p>
+              <a 
+                href="/contatti#prenotazione" 
+                class="btn-primary btn-lg w-full"
+              >
+                Prenota questo appartamento
+              </a>
+            </div>
+          </div>
+          
+          <!-- Caratteristiche Principali -->
+          <div class="grid grid-cols-2 gap-4">
+            {apartment.features.map((feature) => (
+              <div class="flex items-center space-x-3 p-3 bg-neutral-50 rounded-lg">
+                <div class="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Icone dinamiche basate sul tipo -->
+                    {feature.icon === 'eye' && (
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                    )}
+                    {feature.icon === 'car' && (
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z M13 16v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6M8 16V4a1 1 0 011-1h4a1 1 0 011 1v12"/>
+                    )}
+                    {feature.icon === 'wifi' && (
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/>
+                    )}
+                    {feature.icon === 'thermometer' && (
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    )}
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-sm text-neutral-900">{feature.title}</div>
+                  <div class="text-xs text-neutral-600">{feature.description}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Descrizione Dettagliata -->
+  <section class="py-12 bg-neutral-50">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Descrizione -->
+        <div>
+          <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-6">
+            Descrizione
+          </h2>
+          <div class="prose prose-lg text-neutral-700">
+            <p>{apartment.description}</p>
+          </div>
+        </div>
+        
+        <!-- Servizi e Dotazioni -->
+        <div>
+          <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-6">
+            Servizi e Dotazioni
+          </h2>
+          <div class="grid grid-cols-1 gap-3">
+            {apartment.amenities.map((amenity) => (
+              <div class="flex items-center space-x-3 p-3 bg-white rounded-lg border border-neutral-200">
+                <div class="w-2 h-2 bg-success-500 rounded-full"></div>
+                <span class="text-neutral-700">{amenity}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recensioni Specifiche -->
+  {apartmentTestimonials.length > 0 && (
+    <section class="py-12 bg-white">
+      <div class="container-custom">
+        <h2 class="text-2xl font-heading font-bold text-neutral-900 mb-8 text-center">
+          Recensioni per {apartment.name}
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {apartmentTestimonials.map((testimonial) => (
+            <Card className="card-hover">
+              <CardContent className="pt-6">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center text-white font-semibold">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                  <div class="ml-3">
+                    <div class="font-semibold text-neutral-900">{testimonial.name}</div>
+                    <div class="text-sm text-neutral-500">{testimonial.location}</div>
+                  </div>
+                </div>
+                <div class="flex space-x-1 mb-3">
+                  {Array.from({ length: testimonial.rating }).map((_, i) => (
+                    <svg class="w-4 h-4 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                  ))}
+                </div>
+                <p class="text-neutral-600 text-sm italic">
+                  "{testimonial.text}"
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA Prenotazione -->
+  <section class="py-12 bg-primary-600 text-white">
+    <div class="container-custom">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-2xl font-heading font-bold mb-4">
+          Prenota {apartment.name}
+        </h2>
+        <p class="text-lg mb-6 text-primary-100">
+          Contattaci per verificare la disponibilità e prenotare il tuo soggiorno
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contatti#prenotazione" class="btn-accent btn-lg">
+            Verifica Disponibilità
+          </a>
+          <a href="/contatti" class="btn-outline btn-lg border-white text-white hover:bg-white hover:text-primary-600">
+            Contattaci
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<!-- TODO: Implementare galleria immagini interattiva -->
+<!-- TODO: Aggiungere calendario disponibilità -->
+<!-- TODO: Implementare sistema di prenotazione diretta -->
+<!-- TODO: Aggiungere JSON-LD per singolo appartamento -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Apartment",
+  "name": "{apartment.name}",
+  "description": "{apartment.description}",
+  "floorSize": {
+    "@type": "QuantitativeValue",
+    "value": {apartment.size},
+    "unitText": "m²"
+  },
+  "numberOfRooms": {apartment.capacity.bedrooms},
+  "occupancy": {
+    "@type": "QuantitativeValue",
+    "maxValue": {apartment.capacity.guests}
+  },
+  "amenityFeature": [
+    {apartment.amenities.map(amenity => `"${amenity}"`).join(', ')}
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "San Vincenzo",
+    "addressRegion": "Toscana",
+    "addressCountry": "IT"
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceRange": "€{apartment.price.low}-€{apartment.price.high}",
+    "priceCurrency": "EUR"
+  },
+  "image": [
+    "{apartment.images.main}",
+    {apartment.images.gallery.map(img => `"${img}"`).join(', ')}
+  ]
+}
+</script> 
